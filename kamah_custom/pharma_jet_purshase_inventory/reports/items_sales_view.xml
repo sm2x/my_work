@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_brand_in_items_sales_reports" model="ir.ui.view">
+        <field name="name">view_brand_in_items_sales_report</field>
+        <field name="model">items.sales</field>
+        <field name="inherit_id" ref="inventory_report.view_items_sales"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group[3]/field[@name='items_sales_lines']/tree/field[@name='sales_pr']" position="before">
+                 <field name="brand"/>
+            </xpath>
+        </field>
+        </record>
+</odoo>

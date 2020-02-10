@@ -1,0 +1,92 @@
+<odoo>
+    <data>
+
+        <record id="medical_tree" model="ir.ui.view">
+            <field name="name">Request Form</field>
+            <field name="model">medical.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="total_amount" type="char"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="medical_form" model="ir.ui.view">
+            <field name="name">Request Form</field>
+            <field name="model">medical.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="send_to_hr" type="object" string="Send to HR" class="btn btn-sm btn-primary"
+                                states="draft"/>
+
+                        <button name="send_to_cfo" type="object" string="Send to Finance" class="btn btn-sm btn-primary"
+                                states="hr" groups="employee_medical_limit.hr_approval"/>
+
+                        <button name="paid" type="object" string="Paid" class="btn btn-sm btn-primary" states="cfo"
+                                groups="employee_medical_limit.finance_approval"/>
+
+                        <button name="draft" type="object" string="Draft" states="cfo,hr"
+                                class="btn btn-sm btn-primary"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,hr,cfo,paid"/>
+                    </header>
+                    <sheet>
+                        <field name="name"/>
+                        <group>
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="employee_dept"/>
+                                <field name="job_title"/>
+                            </group>
+                            <group>
+                                <field name="medical_bills"/>
+                                <field name="employee_credit"/>
+                                <field name="account_id"/>
+                            </group>
+
+                            <field name="lines_id" attrs="{'readonly': [('state', 'in', ('paid'))]}">
+                                <tree string="Medical Details" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <div class="oe_inline o_td_label">
+                                    <label for="total_amount"/>
+                                </div>
+                                <field name="total_amount" nolabel="1" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_medical_bill_request">
+            <field name="name">Medical Request</field>
+            <field name="res_model">medical.request</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Medical Request" id="id_requests" parent="hr.menu_hr_root"
+                  sequence="20" action="action_medical_bill_request"/>
+
+
+        <record forcecreate="1" id="medical_bill_id" model="ir.sequence">
+            <field name="name">Medical Bill ID</field>
+            <field name="code">medical.request</field>
+            <field name="padding">5</field>
+            <field name="prefix">MED/BILL/</field>
+        </record>
+
+
+    </data>
+</odoo>

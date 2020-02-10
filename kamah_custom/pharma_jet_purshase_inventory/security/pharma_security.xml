@@ -1,0 +1,25 @@
+<odoo>
+    <record id="purchase_planning_manager_group" model="res.groups">
+        <field name="name">Purchase Planning Manager Group</field>
+    </record>
+    <record id="purchase_planning_approval" model="res.groups">
+        <field name="name">Purchase Planning Approval</field>
+    </record>
+    <record id="transfer_planning_manager_group" model="res.groups">
+        <field name="name">Transfer Planning Manager Group</field>
+    </record>
+<!--    <record id="validation_transfer_internal" model="res.groups">-->
+<!--        <field name="name">Internal Validation Transfer Internal</field>-->
+<!--    </record>-->
+
+
+
+
+<!--     <record id="planning_manager_group" model="res.groups">-->
+<!--        <field name="name">All Access Beshoy</field>-->
+<!--        <field name="category_id" ref="purchase_planning_manager_group"/>-->
+<!--        <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>-->
+<!--        <field name="user" eval="[(4,ref('base.user_root')),(4,ref('base.user_admin'))]"/>-->
+<!--   </record>-->
+
+</odoo>

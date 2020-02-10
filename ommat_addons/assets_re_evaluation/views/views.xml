@@ -1,0 +1,105 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sell_assets_wizard">
+            <field name="name">sell_assets_wizard</field>
+            <field name="model">sell.assets.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sell Assets">
+                    <group>
+                        <group>
+                            <field name="sale_price"/>
+                            <field name="sale_account"/>
+                            <field name="net_profit_account"/>
+
+
+                        </group>
+                        <group>
+                            <field name="sell_total_depreciation"/>
+                            <field name="sell_total_accumulated_depreciation"/>
+                            <field name="total_asset_amount"/>
+                            <field name="net_asset_amount"/>
+                            <field name="net_profit"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="sell_asset" string="Sell Asset" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_sell_asset" model="ir.actions.act_window">
+            <field name="name">Sell Asset</field>
+            <field name="res_model">sell.assets.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sell_assets_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="ommat_account__sset_asset_view" model="ir.ui.view">
+            <field name="name">ommat_account.asset.asset.view</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
+            <field name="arch" type="xml">
+
+                <button name="validate" position="replace">
+                    <button name="validate" string="Confirm" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('is_child', '=', True)]}"/>
+
+                </button>
+
+<!--                <button name="set_to_close" position="replace">-->
+<!--                    <button name="set_to_close" states="open" string="Sell or Dispose" type="object"-->
+<!--                            class="oe_highlight" invisible="1"/>-->
+<!--                </button>-->
+
+                <field name="value" position="replace">
+                    <field name="value" widget="monetary" options="{'currency_field': 'currency_id'}"
+                           help="Gross value of asset" attrs="{'readonly': [('is_child', '=', True)]}"/>
+
+                </field>
+
+                <button name="compute_depreciation_board" position="replace">
+                    <button type="object" name="compute_depreciation_board" string="Compute Depreciation"
+                            attrs="{'invisible': [('is_child', '=', True)]}"/>
+
+                </button>
+
+
+                <button name="set_to_close" position="after">
+                    <button name="%(action_sell_asset)d" states="open" string="Sell Asset" type="action"/>
+                </button>
+
+                <field name="value_residual" position="after">
+                    <field name="new_value"/>
+                    <field name="add_value"/>
+                    <field name="child_id" domain="[('state', '=', 'draft'), ('is_child', '!=', True)]"/>
+                    <field name="parent_id"/>
+                    <field name="is_child"/>
+                </field>
+
+
+                <xpath expr="/form/sheet/notebook/page[2]" position="after">
+                    <page name="total" string="Total">
+                        <group>
+                            <group>
+                                <field name="total_depreciation"/>
+                                <field name="total_asset_amount"/>
+                            </group>
+                            <group>
+                                <field name="total_accumulated_depreciation"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

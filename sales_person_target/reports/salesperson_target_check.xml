@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id='target_check_report_template'>
+            <t t-call='web.html_container'>
+                <t t-call='web.external_layout'>
+                    <div class='page'>
+                        <style type="text/css">
+                            table.report_table {
+                            font-size: 14px !important;
+                            border-collapse: collapse !important;
+                            width: 100% !important;
+                            }
+
+                            table.report_table th, table.report_table td {
+                            padding: 8px !important;
+                            text-align: center !important;
+                            }
+
+                            table.report_table tr:nth-child(even){background-color: #f2f2f2 !important;}
+
+                            table.report_table th {
+                            background-color: #4CAF50 !important;
+                            color: white !important;
+                            }
+
+                        </style>
+
+                        <h2 class="text-center" style="margin-bottom:20px;">Sales Persons Targets Check</h2>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-3 text-center">
+                                Target:
+                                <span t-esc="target.name"></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                From:
+                                <span t-esc="date_from"></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                To:
+                                <span t-esc="date_to"></span>
+                            </div>
+                            <div class="col-3 text-center">
+                                Based On:
+                                <span t-esc="type"></span>
+                            </div>
+                        </div>
+                        <t t-foreach="data" t-as="obj">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-4 text-left">
+                                    Sales Person:
+                                    <span t-esc="obj.get('user').name"></span>
+                                </div>
+                            </div>
+                            <table class="report_table" style="border: 1px;">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Category</th>
+                                        <th colspan="2">Planed Target</th>
+                                        <th colspan="2">Achieved Target</th>
+                                        <th colspan="2">Remain</th>
+                                    </tr>
+                                    <tr>
+                                        <th t-if="computation_target == 'amount'">Amount</th>
+                                        <th t-if="computation_target == 'quantity'">Quantity</th>
+                                        <th>Percent %</th>
+                                        <th t-if="computation_target == 'amount'">Amount</th>
+                                        <th t-if="computation_target == 'quantity'">Quantity</th>
+                                        <th>Percent %</th>
+                                        <th t-if="computation_target == 'amount'">Amount</th>
+                                        <th t-if="computation_target == 'quantity'">Quantity</th>
+                                        <th>Percent %</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="obj.get('rules')" t-as="rule">
+                                        <tr>
+                                            <td>
+                                                <t t-if="rule.get('categ_id')">
+
+                                                    <span t-esc="rule.get('categ_id').name"></span>
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rule.get('sale_target')"></span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rule.get('target_percent')"></span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rule.get('total_sales')"></span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rule.get('current_percent')"></span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rule.get('remain')"></span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="rule.get('remain_percent')"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="target_check_report"
+                model="salesperson.target.check"
+                report_type="qweb-pdf"
+                string="Target Check"
+                name="sales_person_target.target_check_report_template"
+                file="sales_person_target.target_check_report_template"
+        />
+
+    </data>
+</odoo>

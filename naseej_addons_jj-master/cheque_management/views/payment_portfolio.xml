@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+     <!--  Payment Portfolio Form View -->
+        <record model="ir.ui.view" id="Payment_Portfolio_id_form">
+            <field name="name">Payment Portfolio Form</field>
+            <field name="model">payment.portfolio</field>
+            <field name="arch" type="xml">
+                <form string="Payment Portfolio Form">
+                    <header>
+                        <button name="post_cheques" string="Post Cheques" type="object" attrs="{'invisible':[('post_checked','=',True)]}"/>
+                    </header>
+                    <sheet>
+                        <div>
+                        <label for="Payment_sequence_id" string="Cheque Number:"/>
+                        <field name="Payment_sequence_id" />
+                    </div>
+                         <group>
+                             <group>
+<!--                                 <field name="partner_id"/>-->
+                                 <field name="date"/>
+                                 <field name="post_checked" invisible="1"/>
+                             </group>
+                             <group>
+                                <field name="desc" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                        <page string="Cheques">
+                            <field name="IssueCheque_ids" widget="one2many_list">
+                                <tree string="Cheques" editable="bottom">
+                                    <field name="cheque_id"/>
+                                    <field name="date_issue"/>
+                                    <field name="cheque_date"/>
+                                    <field name="partner_id"/>
+                                    <field name="name_in_cheque"/>
+<!--                                    <field name="issue_journal_entry"/>-->
+                                    <field name="dest_account_id"/>
+                                    <field name="amount"/>
+                                    <field name="currency_id"/>
+                                    <field name="amount_currency"/>
+<!--                                    <field name="state"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  Payment Portfolio Tree View -->
+        <record model="ir.ui.view" id="Payment_Portfolio_id_tree">
+            <field name="name">Payment Portfolio tree</field>
+            <field name="model">payment.portfolio</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Portfolio Tree">
+<!--                    <field name="partner_id"/>-->
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="Payment_Portfolio_id_action">
+            <field name="name">Payment Portfolio action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payment.portfolio</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a Payment Portfolio
+              </p><p>
+                Create New Payment Portfolio.
+              </p>
+            </field>
+        </record>
+
+        <record id="issue_seq" model="ir.sequence">
+            <field name="name">Payment seq</field>
+            <field name="code">Payment.seq</field>
+            <field name="prefix">SQ</field>
+            <field name="padding">5</field>
+        </record>
+
+        <menuitem name="Payment Portfolio" id="Payment_Portfolio_id_menu" parent="menu_cheque" sequence="4"
+                  action="Payment_Portfolio_id_action"/>
+    </data>
+</odoo>

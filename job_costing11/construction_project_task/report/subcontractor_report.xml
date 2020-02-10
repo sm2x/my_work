@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+        <report id="subcontract_report_id"
+                model="subcontract.report"
+                report_type="qweb-pdf"
+                string="Subcontractor Contract"
+                name="construction_project_task.subcontract_report_template"
+                file="construction_project_task.subcontract_report_template"/>
+        <template id="subcontract_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="sc">
+                    <t t-call="web.external_layout">
+                        <div class="page" dir="rtl">
+                            <header>
+                                <div align="center">
+                                    <p>
+                                        <b>
+                                            <h4>محتويات عقد مقاول الباطن</h4>
+                                        </b>
+                                    </p>
+                                </div>
+                                <table width="100%">
+                                    <tr width="100%">
+                                        <td width="50%">
+                                            <h4>
+                                                <strong>الطرف الثانى :</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.name"/>
+                                            </h4>
+                                        </td>
+                                        <td width="50%">
+                                            <h4>
+                                                <strong>الطرف الاول :</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="user.company_id"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr width="100%">
+                                        <td width="50%">
+                                            <h4>
+                                                <strong>اسم المهندس المسئول</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.engineer"/>
+                                            </h4>
+                                        </td>
+                                        <td width="50%">
+                                            <h4>
+                                                <strong>المشروع المتفق للقيام باعمال به</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.project"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr width="100%">
+                                        <td>
+                                            <h4>
+                                                <strong>الاعمال التى سيتم القيام بها من جانب مقاول الباطن:</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.job_orders"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr width="100%">
+                                        <td>
+                                            <h4>
+                                                <strong>نظام المحاسبة لكل بند</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.payment_term"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr width="100%">
+                                        <td>
+                                            <h4>
+                                                <strong>تحديد نسبة حجز ضمان الاعمال</strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.business_guarantee"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                    <tr width="100%">
+                                        <td>
+                                            <h4>
+                                                <strong>تحديد شرط جزائى فى حالة التأخر عن التسليم فى موعد محدد يتم خصمة
+                                                    من المستخلص النهائى
+                                                </strong>
+                                            </h4>
+                                            <h4>
+                                                <span t-field="sc.penal_conditions"/>
+                                            </h4>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </header>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

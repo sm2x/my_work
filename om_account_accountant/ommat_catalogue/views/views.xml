@@ -1,0 +1,800 @@
+<odoo>
+  <data>
+<!-- weeks ###################################################-->
+      <record model="ir.ui.view" id="land_week_model_list">
+            <field name="name">الاسابيع (أرضى)</field>
+            <field name="model">land.week</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="l_code" invisible="1"/>
+                    <field name="l_code_c"/>
+                    <field name="l_date_from"/>
+                    <field name="l_date_to"/>
+
+                    <field name="l_total_age"/>
+                    <field name="l_productive_age"/>
+
+                    <field name="l_scraped_f"/>
+                    <field name="l_scraped_m"/>
+                    <field name="l_scraped_ommat_f"/>
+                    <field name="l_scraped_ommat_m"/>
+
+                    <field name="l_actual_ommat_f"/>
+                    <field name="l_actual_ommat_m"/>
+
+                    <field name="l_rested_ommat_f"/>
+                    <field name="l_rested_ommat_m"/>
+
+                    <field name="l_daily_feed_f"/>
+                    <field name="l_daily_feed_m"/>
+                    <field name="l_e_daily_feed_f"/>
+                    <field name="l_e_daily_feed_m"/>
+
+                    <field name="l_actual_daily_feed_f"/>
+                    <field name="l_actual_daily_feed_m"/>
+
+                    <field name="l_total_weekly_production_f"/>
+                    <field name="l_total_weekly_production_m"/>
+                    <field name="l_total_weekly_production_pro"/>
+
+
+                    <field name="l_evacuation_weekly_production_f"/>
+                    <field name="l_evacuation_weekly_production_m"/>
+                    <field name="l_evacuation_weekly_production_lab"/>
+
+                    <field name="l_hatching_f"/>
+                    <field name="l_hatching_m"/>
+                </tree>
+            </field>
+      </record>
+
+
+      <record id="ttttt_land_pivot_view" model="ir.ui.view">
+            <field name="name">land.week.pivot.land</field>
+            <field name="model">land.week</field>
+            <field name="arch" type="xml">
+                <pivot string="Check" display_quantity="true">
+                    <field name="l_code" interval="month" type="row"/>
+                    <field name="l_total_age" type="col"/>
+                    <field name="l_scraped_ommat_f" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+
+      <record model="ir.ui.view" id="land_week_model__graph">
+            <field name="name">land.week.graph</field>
+            <field name="model">land.week</field>
+            <field name="arch" type="xml">
+                <graph string="Land Weeks">
+                    <field name="l_code" type="col"/>
+
+                    <field name="l_rested_ommat_f" type="col"/>
+
+                    <field name="l_rested_ommat_f" type="row"/>
+
+<!--                    <field name="l_actual_daily_feed_f" type="measure"/>-->
+<!--                    <field name="l_actual_daily_feed_m" type="measure"/>-->
+                </graph>
+            </field>
+        </record>
+
+
+      <record model="ir.ui.view" id="bat_week_model__graph">
+            <field name="name">bat.week.graph</field>
+            <field name="model">bat.week</field>
+            <field name="arch" type="xml">
+                <graph string="Battery Weeks">
+<!--                    <field name="l_code" type="col"/>-->
+<!--                    <field name="l_date_from" type="col"/>-->
+<!--                    <field name="l_date_to" type="col"/>-->
+
+                    <field name="b_total_age" type="col"/>
+                    <field name="b_productive_age" type="col"/>
+
+<!--                    <field name="l_scraped_f" type="col"/>-->
+<!--                    <field name="l_scraped_m" type="col"/>-->
+
+                    <field name="b_actual_ommat_f" type="col"/>
+                    <field name="b_actual_ommat_m" type="col"/>
+
+                    <field name="b_daily_feed_f" type="col"/>
+                    <field name="b_daily_feed_m" type="col"/>
+
+                    <field name="b_total_weekly_production_f" type="col"/>
+                    <field name="b_evacuation_weekly_production_f" type="col"/>
+                    <field name="b_hatching_f" type="col"/>
+
+
+<!--                    <field name="l_scraped_ommat_f" type="row"/>-->
+<!--                    <field name="l_scraped_ommat_m" type="row"/>-->
+
+<!--                    <field name="l_rested_ommat_f" type="row"/>-->
+<!--                    <field name="l_rested_ommat_m" type="row"/>-->
+
+
+                    <field name="b_e_daily_feed_f" type="row"/>
+                    <field name="b_e_daily_feed_m" type="row"/>
+
+                    <field name="b_total_weekly_production_m" type="row"/>
+                    <field name="b_total_weekly_production_pro" type="row"/>
+
+                    <field name="b_evacuation_weekly_production_m" type="row"/>
+                    <field name="b_evacuation_weekly_production_lab" type="row"/>
+
+                    <field name="b_hatching_m" type="row"/>
+
+                    <field name="b_actual_ommat_f" type="measure"/>
+                    <field name="b_actual_ommat_m" type="measure"/>
+
+                    <field name="b_actual_daily_feed_f" type="measure"/>
+                    <field name="b_actual_daily_feed_m" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+      <record model="ir.ui.view" id="bat_week_model_list">
+            <field name="name">الاسابيع (بطاريات)</field>
+            <field name="model">bat.week</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="b_code"/>
+                    <field name="b_code_c"/>
+                    <field name="b_date_from"/>
+                    <field name="b_date_to"/>
+
+                    <field name="b_total_age"/>
+                    <field name="b_productive_age"/>
+
+                    <field name="b_scraped_f"/>
+                    <field name="b_scraped_m"/>
+                    <field name="b_scraped_ommat_f"/>
+                    <field name="b_scraped_ommat_m"/>
+
+                    <field name="b_actual_ommat_f"/>
+                    <field name="b_actual_ommat_m"/>
+
+                    <field name="b_rested_ommat_f"/>
+                    <field name="b_rested_ommat_m"/>
+
+                    <field name="b_daily_feed_f"/>
+                    <field name="b_daily_feed_m"/>
+
+                    <field name="b_e_daily_feed_f"/>
+                    <field name="b_e_daily_feed_m"/>
+
+                    <field name="b_actual_daily_feed_f"/>
+                    <field name="b_actual_daily_feed_m"/>
+
+                    <field name="b_total_weekly_production_f"/>
+                    <field name="b_total_weekly_production_m"/>
+                    <field name="b_total_weekly_production_pro"/>
+
+                    <field name="b_evacuation_weekly_production_f"/>
+                    <field name="b_evacuation_weekly_production_m"/>
+                    <field name="b_evacuation_weekly_production_lab"/>
+
+                    <field name="b_hatching_f"/>
+                    <field name="b_hatching_m"/>
+                </tree>
+            </field>
+      </record>
+
+      <record model="ir.ui.view" id="land_week_model_form">
+            <field name="name">الاسبوع (أرضى)</field>
+            <field name="model">land.week</field>
+            <field name="arch" type="xml">
+                <form dir="rtl">
+                    <sheet dir="rtl">
+                        <group>
+                            <group>
+                                <field name="l_flock_id"/>
+                                <field name="l_code"/>
+                                <field name="l_code_c"/>
+                                <field name="l_catalogue_id"/>
+                                <field name="l_date_from"/>
+                                <field name="l_date_to"/>
+                                <field name="l_total_age"/>
+                                <field name="l_productive_age"/>
+                                <field name="l_total_weekly_production_f"/>
+                                <field name="l_total_weekly_production_m"/>
+                                <field name="l_evacuation_weekly_production_f"/>
+                                <field name="l_evacuation_weekly_production_m"/>
+                            </group>
+
+                            <group>
+                                <field name="l_scraped_f"/>
+                                <field name="l_scraped_m"/>
+                                <field name="l_scraped_ommat_f"/>
+                                <field name="l_scraped_ommat_m"/>
+                                <field name="l_rested_ommat_f"/>
+                                <field name="l_rested_ommat_m"/>
+                                <field name="l_hatching_f"/>
+                                <field name="l_hatching_m"/>
+                                <field name="l_daily_feed_f"/>
+                                <field name="l_daily_feed_m"/>
+                                <field name="l_e_daily_feed_f"/>
+                                <field name="l_e_daily_feed_m"/>
+                            </group>
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+      <record model="ir.ui.view" id="bat_week_model_form">
+            <field name="name">الاسبوع (بطاريات)</field>
+            <field name="model">bat.week</field>
+            <field name="arch" type="xml">
+                <form dir="rtl">
+                    <sheet dir="rtl">
+                        <group>
+                            <group>
+                                <field name="b_flock_id"/>
+                                <field name="b_code"/>
+                                <field name="b_catalogue_id"/>
+                                <field name="b_date_from"/>
+                                <field name="b_date_to"/>
+                                <field name="b_total_age"/>
+                                <field name="b_productive_age"/>
+                                <field name="b_total_weekly_production_f"/>
+                                <field name="b_total_weekly_production_m"/>
+                                <field name="b_evacuation_weekly_production_f"/>
+                                <field name="b_evacuation_weekly_production_m"/>
+                            </group>
+
+                            <group>
+                                <field name="b_scraped_f"/>
+                                <field name="b_scraped_m"/>
+                                <field name="b_scraped_ommat_f"/>
+                                <field name="b_scraped_ommat_m"/>
+                                <field name="b_rested_ommat_f"/>
+                                <field name="b_rested_ommat_m"/>
+                                 <field name="b_hatching_f"/>
+                                <field name="b_hatching_m"/>
+                                <field name="b_daily_feed_f"/>
+                                <field name="b_daily_feed_m"/>
+                                <field name="b_e_daily_feed_f"/>
+                                <field name="b_e_daily_feed_m"/>
+                            </group>
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+<!-- #################################################################-->
+
+
+<!-- catalogues ###################################################-->
+      <record model="ir.ui.view" id="ommat_catalogue_model_list">
+          <field name="name">الكتالوجات</field>
+          <field name="model">ommat.catalogue</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="flock_id"/>
+                  <!--<field name="lot_id"/>-->
+                  <field name="dynasty"/>
+              </tree>
+          </field>
+      </record>
+
+       <record model="ir.ui.view" id="ommat_catalogue_model_form">
+            <field name="name">الكتالوج</field>
+            <field name="model">ommat.catalogue</field>
+            <field name="arch" type="xml">
+                <form dir="rtl">
+                    <header>
+                        <button name="upload_weeks" type="object" string="Upload Weeks" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="in_progress,done" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet dir="rtl">
+                        <group>
+                            <group>
+                                <field name="flock_id"/>
+                                <!--<field name="lot_id" invisible="1"/>-->
+                                <field name="dynasty"/>
+                                <field name="product_id_f" invisible="1"/>
+                                <field name="product_id_fm"/>
+                                <field name="product_id_m" invisible="1"/>
+                                <field name="date_from"/>
+                                <field name="date_to" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="flock_num"/>
+                                <field name="land_f_num"/>
+                                <field name="land_m_num"/>
+                                <field name="bat_f_num"/>
+                                <field name="bat_m_num"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="land_Weeks" string="أرضى شركه">
+                                <field name="land_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" create="false" delete="false" edit="false">
+
+                                        <field name="l_code"/>
+                                        <field name="l_date_from"/>
+                                        <field name="l_date_to"/>
+
+                                        <field name="l_total_age"/>
+                                        <field name="l_productive_age"/>
+
+                                        <field name="l_scraped_f"/>
+                                        <field name="l_scraped_m"/>
+                                        <field name="l_scraped_ommat_f"/>
+                                        <field name="l_scraped_ommat_m"/>
+
+                                        <field name="l_actual_ommat_f"/>
+                                        <field name="l_actual_ommat_m"/>
+
+                                        <field name="l_rested_ommat_f"/>
+                                        <field name="l_rested_ommat_m"/>
+
+                                        <field name="l_daily_feed_f"/>
+                                        <field name="l_daily_feed_m"/>
+                                        <field name="l_e_daily_feed_f"/>
+                                        <field name="l_e_daily_feed_m"/>
+
+                                        <field name="l_actual_daily_feed_f"/>
+                                        <field name="l_actual_daily_feed_m"/>
+
+                                        <field name="l_total_weekly_production_f"/>
+                                        <field name="l_total_weekly_production_m"/>
+                                        <field name="l_total_weekly_production_pro"/>
+
+
+                                        <field name="l_evacuation_weekly_production_f"/>
+                                        <field name="l_evacuation_weekly_production_m"/>
+                                        <field name="l_evacuation_weekly_production_lab"/>
+                                        <field name="l_hatching_f"/>
+                                        <field name="l_hatching_m"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="bat_Weeks" string="بطاريات شركه">
+                                <field name="bat_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" create="false" delete="false" edit="false">
+
+                                        <field name="b_code"/>
+                                        <field name="b_date_from"/>
+                                        <field name="b_date_to"/>
+
+                                        <field name="b_total_age"/>
+                                        <field name="b_productive_age"/>
+
+                                        <field name="b_scraped_f"/>
+                                        <field name="b_scraped_m"/>
+                                        <field name="b_scraped_ommat_f"/>
+                                        <field name="b_scraped_ommat_m"/>
+
+                                        <field name="b_actual_ommat_f"/>
+                                        <field name="b_actual_ommat_m"/>
+
+                                        <field name="b_rested_ommat_f"/>
+                                        <field name="b_rested_ommat_m"/>
+
+                                        <field name="b_daily_feed_f"/>
+                                        <field name="b_daily_feed_m"/>
+
+                                        <field name="b_e_daily_feed_f"/>
+                                        <field name="b_e_daily_feed_m"/>
+
+                                        <field name="b_actual_daily_feed_f"/>
+                                        <field name="b_actual_daily_feed_m"/>
+
+                                        <field name="b_total_weekly_production_f"/>
+                                        <field name="b_total_weekly_production_m"/>
+                                        <field name="b_total_weekly_production_pro"/>
+
+                                        <field name="b_evacuation_weekly_production_f"/>
+                                        <field name="b_evacuation_weekly_production_m"/>
+                                        <field name="b_evacuation_weekly_production_lab"/>
+
+                                        <field name="b_hatching_f"/>
+                                        <field name="b_hatching_m"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="w_land_Weeks" string="أرضى سلاله">
+                                <field name="w_land_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" create="false" delete="false" edit="false">
+
+                                        <field name="l_code"/>
+                                        <field name="l_date_from_ww"/>
+                                        <field name="l_date_to_ww"/>
+
+                                        <field name="l_total_age_ww"/>
+                                        <field name="l_productive_age_ww"/>
+
+                                        <field name="l_scraped_f_ww"/>
+                                        <field name="l_scraped_m_ww"/>
+                                        <field name="l_scraped_ommat_f_ww"/>
+                                        <field name="l_scraped_ommat_m_ww"/>
+
+                                        <field name="l_actual_ommat_f_ww"/>
+                                        <field name="l_actual_ommat_m_ww"/>
+
+                                        <field name="l_rested_ommat_f_ww"/>
+                                        <field name="l_rested_ommat_m_ww"/>
+
+                                        <field name="l_daily_feed_f_ww"/>
+                                        <field name="l_daily_feed_m_ww"/>
+                                        <field name="l_e_daily_feed_f_ww"/>
+                                        <field name="l_e_daily_feed_m_ww"/>
+
+                                        <field name="l_actual_daily_feed_f_ww"/>
+                                        <field name="l_actual_daily_feed_m_ww"/>
+
+                                        <field name="l_total_weekly_production_f_ww"/>
+                                        <field name="l_total_weekly_production_m_ww"/>
+                                        <field name="l_total_weekly_production_pro_ww"/>
+
+
+                                        <field name="l_evacuation_weekly_production_f_ww"/>
+                                        <field name="l_evacuation_weekly_production_m_ww"/>
+                                        <field name="l_evacuation_weekly_production_lab_ww"/>
+                                        <field name="l_hatching_f_ww"/>
+                                        <field name="l_hatching_m_ww"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="w_bat_Weeks" string="بطاريات سلاله">
+                                <field name="w_bat_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" create="false" delete="false" edit="false">
+
+                                        <field name="b_code"/>
+                                        <field name="b_date_from_ww"/>
+                                        <field name="b_date_to_ww"/>
+
+                                        <field name="b_total_age_ww"/>
+                                        <field name="b_productive_age_ww"/>
+
+                                        <field name="b_scraped_f_ww"/>
+                                        <field name="b_scraped_m_ww"/>
+                                        <field name="b_scraped_ommat_f_ww"/>
+                                        <field name="b_scraped_ommat_m_ww"/>
+
+                                        <field name="b_actual_ommat_f_ww"/>
+                                        <field name="b_actual_ommat_m_ww"/>
+
+                                        <field name="b_rested_ommat_f_ww"/>
+                                        <field name="b_rested_ommat_m_ww"/>
+
+                                        <field name="b_daily_feed_f_ww"/>
+                                        <field name="b_daily_feed_m_ww"/>
+
+                                        <field name="b_e_daily_feed_f_ww"/>
+                                        <field name="b_e_daily_feed_m_ww"/>
+
+                                        <field name="b_actual_daily_feed_f_ww"/>
+                                        <field name="b_actual_daily_feed_m_ww"/>
+
+                                        <field name="b_total_weekly_production_f_ww"/>
+                                        <field name="b_total_weekly_production_m_ww"/>
+                                        <field name="b_total_weekly_production_pro_ww"/>
+
+                                        <field name="b_evacuation_weekly_production_f_ww"/>
+                                        <field name="b_evacuation_weekly_production_m_ww"/>
+                                        <field name="b_evacuation_weekly_production_lab_ww"/>
+
+                                        <field name="b_hatching_f_ww"/>
+                                        <field name="b_hatching_m_ww"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="configurations" string="الاعداد المقدرة">
+                                <group>
+
+                                    <group name="land" string="أرضى">
+                                        <group>
+                                            <field name="weight_avg_l"/>
+                                            <field name="kilo_price_l"/>
+                                        </group>
+                                        <group>
+                                            <field name="last_rested_ommat_ml" invisible="1"/>
+                                            <field name="last_rested_ommat_fl"/>
+                                            <field name="e_value_l"/>
+                                        </group>
+
+                                    </group>
+
+                                    <group name="bat" string="بطاريات">
+                                        <group>
+                                            <field name="weight_avg_b"/>
+                                            <field name="kilo_price_b"/>
+                                        </group>
+                                        <group>
+                                            <field name="last_rested_ommat_fb"/>
+                                            <field name="last_rested_ommat_mb" invisible="1"/>
+                                            <field name="e_value_b"/>
+                                        </group>
+                                    </group>
+
+                                </group>
+
+                            </page>
+
+                            <page name="accounts" string="حسابات القيمة المقدرة">
+                                <group>
+                                    <group>
+                                        <field name="e_value_acc_debit"/>
+                                    </group>
+                                    <group>
+                                        <field name="e_value_acc_credit"/>
+                                        <field name="depreciation_account"/>
+                                    </group><group>
+                                        <field name="journal_id"/>
+                                    </group>
+                                </group>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+       </record>
+<!-- #################################################################-->
+        <record id="iot_land_search" model="ir.ui.view">
+                <field name="name">land.week.view.search</field>
+                <field name="model">land.week</field>
+                <field name="arch" type="xml">
+                    <search string=" Device">
+
+                        <field name="l_code"/>
+
+                        <group expand="0" string="Group By">
+                            <filter string="week" name="week" context="{'group_by':'l_code'}"/>
+                            <filter string="l_rested_ommat_f" name="l_rested_ommat_f" context="{'group_by':'l_rested_ommat_f'}"/>
+                            <filter string="l_actual_daily_feed_f" name="l_actual_daily_feed_f" context="{'group_by':'l_actual_daily_feed_f'}"/>
+                        </group>
+                    </search>
+                </field>
+            </record>
+<!-- dynasty ###################################################-->
+      <record model="ir.ui.view" id="ommat_dynasty_model_list">
+          <field name="name">السلالات</field>
+          <field name="model">dynasty.model</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="dynasty_name"/>
+              </tree>
+          </field>
+      </record>
+
+       <record model="ir.ui.view" id="ommat_dynasty_model_form">
+            <field name="name">السلالات</field>
+            <field name="model">dynasty.model</field>
+            <field name="arch" type="xml">
+                <form dir="rtl">
+                    <sheet dir="rtl">
+                        <group>
+                            <group>
+                                <field name="dynasty_name"/>
+                            </group>
+                            <group/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+       </record>
+<!-- #################################################################-->
+
+
+<!-- flocks ###################################################-->
+      <record model="ir.ui.view" id="ommat_flock_model_list">
+          <field name="name">القطعان</field>
+          <field name="model">flock.model</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="flock_name"/>
+                  <field name="dynasty"/>
+                  <!--<field name="lot_id"/>-->
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.ui.view" id="ommat_flock_model_form">
+            <field name="name">القطيع</field>
+            <field name="model">flock.model</field>
+            <field name="arch" type="xml">
+                <form dir="rtl">
+                    <sheet dir="rtl">
+                        <group>
+                            <group>
+                                <field name="flock_name"/>
+                                <!--<field name="lot_id"/>-->
+                                <field name="dynasty"/>
+                            </group>
+                            <group/>
+                        </group>
+
+                        <notebook>
+                            <page name="land_Weeks" string="أرضى">
+                                <field name="land_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" editable="bottom">
+
+                                        <field name="l_code" invisible="1"/>
+                                        <field name="l_code_c"/>
+
+                                        <field name="l_total_age"/>
+                                        <field name="l_productive_age"/>
+
+                                        <field name="l_scraped_f"/>
+                                        <field name="l_scraped_m"/>
+
+                                        <field name="l_daily_feed_f"/>
+                                        <field name="l_daily_feed_m"/>
+
+                                        <field name="l_total_weekly_production_f"/>
+
+                                        <field name="l_evacuation_weekly_production_f"/>
+
+                                        <field name="l_hatching_f"/>
+
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="bat_Weeks" string="بطاريات">
+                                <field name="bat_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" editable="bottom">
+
+                                        <field name="b_code" invisible="1"/>
+                                        <field name="b_code_c"/>
+                                        <field name="b_total_age"/>
+                                        <field name="b_productive_age"/>
+
+                                        <field name="b_scraped_f"/>
+                                        <field name="b_scraped_m"/>
+
+
+                                        <field name="b_daily_feed_f"/>
+                                        <field name="b_daily_feed_m"/>
+
+                                        <field name="b_total_weekly_production_f"/>
+
+                                        <field name="b_evacuation_weekly_production_f"/>
+
+                                        <field name="b_hatching_f"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="w_land_Weeks" string="أرضى سلاله">
+                                <field name="w_land_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" editable="bottom">
+
+                                        <field name="l_code" invisible="1"/>
+                                        <field name="l_code_cww"/>
+
+                                        <field name="l_total_age_ww"/>
+                                        <field name="l_productive_age_ww"/>
+
+                                        <field name="l_scraped_f_ww"/>
+                                        <field name="l_scraped_m_ww"/>
+
+                                        <field name="l_daily_feed_f_ww"/>
+                                        <field name="l_daily_feed_m_ww"/>
+
+                                        <field name="l_total_weekly_production_f_ww"/>
+
+                                        <field name="l_evacuation_weekly_production_f_ww"/>
+
+                                        <field name="l_hatching_f_ww"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                            <page name="w_bat_Weeks" string="بطاريات سلاله">
+                                <field name="w_bat_week_ids" widget="one2many_list">
+                                    <tree string="Weeks" editable="bottom">
+
+                                        <field name="b_code" invisible="1"/>
+                                        <field name="b_code_cww"/>
+
+                                        <field name="b_total_age_ww"/>
+                                        <field name="b_productive_age_ww"/>
+
+                                        <field name="b_scraped_f_ww"/>
+                                        <field name="b_scraped_m_ww"/>
+
+                                        <field name="b_daily_feed_f_ww"/>
+                                        <field name="b_daily_feed_m_ww"/>
+
+                                        <field name="b_total_weekly_production_f_ww"/>
+
+                                        <field name="b_evacuation_weekly_production_f_ww"/>
+
+                                        <field name="b_hatching_f_ww"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+       </record>
+<!-- #################################################################-->
+
+
+<!-- actions ###################################################-->
+
+      <record model="ir.actions.act_window" id="land_week_action">
+            <field name="name">(أرضى)</field>
+            <field name="res_model">land.week</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
+
+      </record>
+
+      <record model="ir.actions.act_window" id="bat_week_action">
+            <field name="name">الاسابيع (بطاريات)</field>
+            <field name="res_model">bat.week</field>
+            <field name="view_mode">tree,form,graph</field>
+      </record>
+
+
+      <record model="ir.actions.act_window" id="catalogues_action">
+            <field name="name">الكتالوجات</field>
+            <field name="res_model">ommat.catalogue</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                إنشاء كاتالوج
+              </p>
+                <p>
+
+                </p>
+            </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="flock_model_action">
+            <field name="name">القطعان</field>
+            <field name="res_model">flock.model</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+<!-- #################################################################-->
+
+<!-- menus ###################################################-->
+     <!-- Top menu item -->
+        <menuitem name="Poultry" id="ommat_poultry_menu_root"/>
+
+      <!-- menu categories -->
+
+        <menuitem name="الكتالوجات" id="catalogues_ommat_poultry_menu_item" parent="ommat_poultry_menu_root" sequence="1"/>
+        <menuitem name="الاعدادات" id="ommat_poultry_menu_item_configurations" parent="ommat_poultry_menu_root" sequence="2"/>
+
+        <menuitem name=" الكتالوج" id="ommat_poultry_menu_item_catalogues" parent="catalogues_ommat_poultry_menu_item"
+                  action="catalogues_action"/>
+
+        <menuitem name="إنشاء قطيع" id="ommat_poultry_menu_item_flocks" parent="ommat_poultry_menu_item_configurations"
+                  action="flock_model_action" sequence="1"/>
+
+        <menuitem name="إنشاء اسبوع أرضى" id="land_week_menu_item" parent="ommat_poultry_menu_item_configurations"
+                  action="land_week_action" sequence="2"/>
+        <menuitem name="إنشاء اسبوع بطاريات" id="bat_week_menu_item" parent="ommat_poultry_menu_item_configurations"
+                  action="bat_week_action" sequence="3"/>
+<!-- #################################################################-->
+
+  </data>
+</odoo>

@@ -1,0 +1,57 @@
+<odoo>
+    <record id="view_internal_ransfer" model="ir.ui.view">
+        <field name="name">view_internal_ransfer</field>
+        <field name="model">internal.transfer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Internal Transfer Report" sequence="1" >
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to" />
+                        </group>
+                        <group >
+                            <field name="prod_id"/>
+                        </group>
+                        <group >
+                            <field name="from_location"/>
+                        </group>
+                        <group>
+                            <field name="to_location" widget="many2many_tags" />
+                        </group>
+                    </group>
+                    <group>
+                        <button name="create_transfer_line" string="Load" class="oe_highlight" type="object"/>
+                    </group>
+                    <group>
+                      <field name="internal_line"  >
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="product"/>
+                            <field name="refrence"/>
+                            <field name="from_loc"/>
+                            <field name="to_loc" />
+                            <field name="transfer_qty"/>
+                            <field name="date_sch"/>
+                        </tree>
+                      </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_transfer_report" model="ir.actions.act_window">
+        <field name="name">Transfer Report</field>
+        <field name="res_model">internal.transfer</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_internal_transfer"
+        name="Internal Transfer Report / تقرير اذون الصرف"
+        parent="stock.menu_warehouse_report"
+        action="action_transfer_report"
+        sequence="18"
+        />
+
+</odoo>

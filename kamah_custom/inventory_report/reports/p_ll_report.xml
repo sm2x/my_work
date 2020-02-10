@@ -1,0 +1,12 @@
+<odoo>
+    <template id='inventory_report_inherit' inherit_id='inventory_report.items_sales_template'>
+        <xpath expr="//group/table[2]/tr[@class='thead-light']/th" position='after'>
+            <th> Brand </th>
+        </xpath>
+        <xpath expr="//group/table[2]/tbody/t[@t-foreach='o.items_sales_lines']/tr/td " position='after'>
+            <td>
+                <span t-field="line.brand"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

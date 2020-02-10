@@ -1,0 +1,133 @@
+# -*- coding: utf-8 -*-
+
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
+
+
+class ClearCheque(models.TransientModel):
+    _name = "clear.cheque"
+
+    date_clear = fields.Date(string='Clear Date', default=fields.Date.context_today, required=True)
+
+    @api.multi
+    def immediate_clear_cheque(self):
+        cheques = self.env['cheque.master'].browse(self.env.context.get('active_ids'))
+        for cheque_obj in cheques:
+            if cheque_obj.state not in ('issued','pending'):
+                raise UserError('You can clear only cheques in Issued or Pending status !!!')
+        cheque_config = self.env['cheque.config.settings'].search([], order='id desc', limit=1)
+        if not cheque_config.cheque_journal_p_id:
+            raise UserError(_('Set Cheque Payment Journal under Settings !!!'))
+        journal_id = cheque_config.cheque_journal_p_id.id
+        for cheque_obj in cheques:
+            line_ids = [
+                (0, 0,
+                 {'journal_id': journal_id,
+                  'account_id': cheque_obj.bank_name.account_id.id,
+                  'name': '/',
+                  'amount_currency': -cheque_obj.amount_currency or False,
+                  'currency_id': cheque_obj.currency_id.id,
+                  'credit': cheque_obj.amount}),
+
+                (0, 0, {'journal_id': journal_id,
+                        'account_id': cheque_obj.bank_name.pdc_account_id.id,
+                        'partner_id': cheque_obj.partner_id.id,
+                        'name': cheque_obj.name + ' Clearance',
+                        'amount_currency': cheque_obj.amount_currency or False,
+                        'currency_id': cheque_obj.currency_id.id,
+                        'debit': cheque_obj.amount})
+            ]
+            vals = {
+                'journal_id': journal_id,
+                'ref': cheque_obj.name,
+                'date': self.date_clear,
+                'line_ids': line_ids,
+            }
+            account_move = self.env['account.move'].create(vals)
+            dates_lines = [
+                (0, 0, {
+                    'cheque_state': 'Cleared',
+                    'state_date': self.date_clear,
+                    'state_journal': account_move.id
+                })]
+            account_move.post()
+            cheque_obj.write(
+                {'state': 'cleared',
+                 'account_move_ids': [(4, account_move.id)],
+                 'dates_ids': dates_lines})
+
+    @api.multi
+    def hold_cheque(self):
+        cheque_obj = self.env['cheque.master'].browse(self.env.context.get('active_id'))
+        today = fields.Date.context_today(self)
+        if self.date_clear < today:
+            raise UserError('Hold date must not be less than today. Reset Hold date !!!')
+
+        else:
+            dates_lines = [
+                (0, 0, {
+                    'cheque_state': 'Hold',
+                    'state_date': self.date_clear,
+                })]
+            cheque_obj.write({
+                'state': 'hold',
+                'dates_ids': dates_lines})
+
+    @api.multi
+    def hold_receive_cheque(self):
+        cheque_obj = self.env['receive.cheque.master'].browse(self.env.context.get('active_id'))
+        today = fields.Date.context_today(self)
+        if self.date_clear < today:
+            raise UserError('Hold date must not be less than today. Reset Hold date !!!')
+
+        else:
+            dates_lines = [
+                (0, 0, {
+                    'cheque_state': 'Hold',
+                    'state_date': self.date_clear,
+                })]
+            cheque_obj.write({
+                'state': 'hold',
+                'dates_ids': dates_lines})
+
+    @api.multi
+    def clear_cheque(self):
+        cheque_obj = self.env['cheque.master'].browse(self.env.context.get('active_id'))
+        cheque_config = self.env['cheque.config.settings'].search([], order='id desc', limit=1)
+        if not cheque_config.cheque_journal_p_id:
+            raise UserError(_('Set Cheque Payment Journal under Settings !!!'))
+        journal_id = cheque_config.cheque_journal_p_id.id
+        line_ids = [
+            (0, 0,
+             {'journal_id': journal_id,
+              'account_id': cheque_obj.bank_name.account_id.id,
+              'name': '/',
+              'amount_currency': -cheque_obj.amount_currency or False,
+              'currency_id': cheque_obj.currency_id.id,
+              'credit': cheque_obj.amount}),
+
+            (0, 0, {'journal_id': journal_id,
+                    'account_id': cheque_obj.bank_name.pdc_account_id.id,
+                    'partner_id': cheque_obj.partner_id.id,
+                    'name': cheque_obj.name + ' Clearance',
+                    'amount_currency': cheque_obj.amount_currency or False,
+                    'currency_id': cheque_obj.currency_id.id,
+                    'debit': cheque_obj.amount})
+        ]
+        vals = {
+            'journal_id': journal_id,
+            'ref': cheque_obj.name,
+            'date': self.date_clear,
+            'line_ids': line_ids,
+        }
+        account_move = self.env['account.move'].create(vals)
+        dates_lines = [
+            (0, 0, {
+                'cheque_state': 'Cleared',
+                'state_date': self.date_clear,
+                'state_journal': account_move.id
+            })]
+        account_move.post()
+        cheque_obj.write({'state': 'cleared',
+                          'account_move_ids': [(4, account_move.id)],
+                          'dates_ids': dates_lines})

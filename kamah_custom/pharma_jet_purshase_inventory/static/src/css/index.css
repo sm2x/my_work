@@ -1,0 +1,35 @@
+/*
+#o_field_input_40
+{
+width: 950px;
+margin-top: 32px;
+margin-left: -100px;
+}
+td{
+text-align:center !important
+}
+*/
+
+.o_form_view .o_group.o_inner_group > tbody > tr > td.o_td_label
+{
+    padding: 0;
+    min-width: 130px;
+}
+.o_form_view .o_field_widget.o_field_one2many > div tr
+.o_form_view .o_field_widget.o_field_many2many > div th
+{
+    width: 100%
+
+}
+.o_form_view .o_field_widget.o_field_one2many > div tr > th,
+.o_form_view .o_field_widget.o_field_many2many > div tr > th
+{
+    padding-right: 0px;
+    text-align: center;
+    font-size: 12px;
+    padding-left: 0;
+}
+
+.o_form_view .o_field_widget .o_list_view.table-striped > tbody > tr > td {
+    border-top: none;
+}

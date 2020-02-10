@@ -1,0 +1,197 @@
+<odoo>
+
+    <record id="location_inherite_view" model="ir.ui.view">
+        <field name="name">location_inherite_view</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="validation_transfer_internal" widget="many2many_tags"
+                       groups="pharma_jet_purshase_inventory.validation_transfer_internal"/>
+            </field>
+        </field>
+    </record>
+
+    <!--              This act the sequence-->
+    <record id="seq_transfer_planning" model="ir.sequence">
+            <field name="name">Serial_no</field>
+            <field name="code">serial_for_transefer_planning</field>
+            <field name="prefix">ITP/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    <record id="view_form_transfer_planning" model="ir.ui.view">
+    <field name="name">view_form_transfer_planning</field>
+    <field name="model">transfer.planning</field>
+    <field name="arch" type="xml">
+        <form>
+            <header>
+                <button name="create_transfer_line" string="Load Data"
+                        class="oe_highlight" type="object"
+                        style="background-color: #875A7B;border: none"/>
+                <button name="create_internal_transfer"
+                        string="Internal Transfer"
+                        class="oe_highlight" type="object"
+                        style="background-color: #875A7B;border: none"
+                />
+            </header>
+            <sheet>
+                <group >
+                    <group>
+                        <field name="name" string="Sequence"/>
+                        <field name="internal_stock" string="Stocks"
+                               domain="[('usage', '=', 'internal')]"
+                               options="{'no_create': True}"
+                               widget="many2many_tags"
+                        />
+                        <field name="location_ids"/>
+                        <field name="location_dest_ids"/>
+                        <field name="picking_type_ids"/>
+                     </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="sales_period"/>
+                        <field name="sales_period_rate"/>
+                        <field name="days_rate_supply"/>
+                    </group>
+                    <group style="width: 100%">
+                        <field name="transfer_line" widget="one2many_list" force_save="1">
+                                <tree string="Transfer Planning" editable="bottom" create="false">
+                                    <field name="go_it"/>
+                                    <field name="product"/>
+                                    <field name="product_uom_inherite" invisible="1"/>
+                                    <field name="sale_prod" invisible="1"/>
+                                    <field name="pos_prod" invisible="1"/>
+                                    <field name="total_sold_qty"  />
+                                    <field name="days_rate_supply" />
+                                    <field name="sold_qty_rate"  />
+                                    <field name="current_balance" />
+                                    <field name="qty_demand" />
+                                    <field name="real_demand_qty" />
+                                </tree>
+                            </field>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+    </record>
+
+
+       <!-- Tree View Transfer Planning -->
+    <record id="view_tree_transfer_planning" model="ir.ui.view">
+            <field name="name">Transfer Planning</field>
+            <field name="model">transfer.planning</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="transfer_line" string="Number Of Products"/>
+<!--                    <field name="days_rate_supply"/>-->
+                    <field name="internal_stock" />
+                    <field name="location_ids"/>
+                    <field name="location_dest_ids"/>
+                    <field name="picking_type_ids"/>
+                    <field name="date_from" />
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+<!--          Search View Transfer Planning  -->
+    <record id="view_search_transfer_planning" model="ir.ui.view">
+            <field name="name">Transfer Planning</field>
+            <field name="model">transfer.planning</field>
+            <field name="arch" type="xml">
+                <search string="Planning">
+                    <field name="name"/>
+                    <field name="transfer_line" string="Number Of Products"/>
+                    <field name="days_rate_supply"/>
+                    <field name="internal_stock" />
+                    <field name="location_ids"/>
+                    <field name="location_dest_ids"/>
+                    <field name="picking_type_ids"/>
+                    <field name="date_from" />
+                    <field name="date_to"/>
+                    <filter name="name" string="Codes" domain="[('name','&gt;',0)]"/>
+                    <filter name="transfer_line" string="Number Of Products" domain="[('name','&gt;',0)]"/>
+                    <filter name="days_rate_supply"  domain="[('name','&gt;',0)]"/>
+                    <filter name="internal_stock"  domain="[('name','&gt;',0)]"/>
+                    <filter name="location_id"  domain="[('name','&gt;',0)]"/>
+                    <filter name="location_dest_id"  domain="[('name','&gt;',0)]"/>
+                    <filter name="picking_type_id"  domain="[('name','&gt;',0)]"/>
+                </search>
+            </field>
+        </record>
+
+
+    <record id="stock_stock_move_line_view" model="ir.ui.view">
+            <field name="name">stock_stock_move_line_view</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.stock_move_line_view_search" />
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string="Receptions" name="incoming"
+                            domain="[('picking_id.picking_type_id.code','=','incoming')]"
+                            context="{'group_by':'internals'}"/>
+                    <filter string="Deliveries" name="outgoing"
+                            domain="[('picking_id.picking_type_id.code','=','outgoing')]"
+                            context="{'group_by':'internals'}"/>
+                    <filter string="Internal" name="internal"
+                            domain="[('picking_id.picking_type_id.code','=','internal')]"
+                            context="{'group_by':'internals'}"/>
+                    <filter string="Manufacturing" name="manufacturing"
+                            domain="[('picking_id.picking_type_id.code','=','manufacturing')]"
+                            context="{'group_by':'internals'}"/>
+
+                </xpath>
+<!--                <field name="show_reserved" position="after">-->
+<!--                    <field name="internal_trans_approv"-->
+<!--                           attrs="{'invisible' : [('code', '!=', 'internal')]}"/>-->
+<!--                </field>-->
+            </field>
+        </record>
+
+
+
+     <record id="new_field_in_picking" model="ir.ui.view">
+        <field name="name">new_field_in_picking</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[2]/field[@name='move_ids_without_package']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="qty" />
+                <field name="onhand"/>
+                <field name="test" invisible="1"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='button_validate']" position="replace">
+                 <button name="button_validate"
+                     attrs="{'invisible': ['|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False)]}"
+                     string="Validate" type="object" class="oe_highlight"/>
+<!--                     groups="pharma_jet_purshase_inventory.stock_picking_group"/>-->
+            </xpath>
+            <field name="partner_id" position="after">
+                <field name="test1" invisible="1"/>
+            </field>
+        </field>
+     </record>
+
+
+    <record id="action_transfer_planning" model="ir.actions.act_window">
+        <field name="name">Transfer Planning</field>
+        <field name="res_model">transfer.planning</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+                id="menu_transfer_planning"
+                name="Transfer Planning"
+                parent="stock.menu_stock_warehouse_mgmt"
+                action="action_transfer_planning"
+                sequence="16"
+        />
+
+</odoo>
+
+

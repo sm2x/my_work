@@ -1,0 +1,55 @@
+<odoo>
+    <record id="action_bonuss_ids" model="ir.actions.act_window">
+        <field name="name">Bonus</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bounss</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+     <record id="view_bonus_wizard" model="ir.ui.view">
+        <field name="name">view_bonus_wizard</field>
+        <field name="model">bounss</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Bonus">
+                      <group string="Bonus" sequence="1" >
+                        <group >
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="location" widget="many2many_tags" />
+                        </group>
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                <footer>
+                     <button name="print_report" string="Print" type="object"/>
+                     <button name="create_bonus_lines"  string="Get Data" type="object"/>
+                     <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem
+        id="menu_bonusss"
+        name="Bonus Report / بيشوووو"
+        parent="stock.menu_warehouse_report"
+        action="action_bonuss_ids"
+        sequence="41"
+        />
+
+    <report
+        id="bonuss_report"
+        model="bounss"
+        string="Bonus Report"
+        report_type="qweb-html"
+        name="inventory_report.bonus_template"
+        file="inventory_report.bonus_template"
+        />
+
+
+</odoo>

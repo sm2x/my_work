@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="compute_sales_target_form" model="ir.ui.view">
+            <field name="name">tt.compute_sales_target_form</field>
+            <field name="model">compute.sales.target</field>
+            <field name="arch" type="xml">
+                <form string="Compute Target">
+                    <sheet>
+                        <group>
+                            <group>
+
+                                <field name="target_id" required="1" widget="selection"/>
+                                <field name="user_ids" required="1" widget="many2many_tags"
+                                       options="{'no_create':True}"/>
+                                <field name="categ_ids" required="1" widget='many2many_tags'
+                                       options="{'no_create':True}"/>
+<!--                               TODO ragaa customizations-->
+
+<!--                                       attrs="{'required':[('type','!=','payment')],'invisible':[('type','=','payment')]}"-->
+                            </group>
+                            <group>
+<!--                                <field name="sale_ok"/>-->
+<!--                                <field name="invoice_ok"/>-->
+
+<!--                                <field name="quantity_ok"/>-->
+<!--                                <field name="amount_ok"/>-->
+
+                                <field name="type" widget="radio"/>
+
+                                <field name="payment_ok"/>
+
+                                <field name="computation_target" widget="radio"
+                                       attrs="{'invisible':[('type','=','payment')]}"/>
+
+                                <field name="start_date" required="0"/>
+                                <field name="end_date" required="0"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="compute_target" string="Compute Target" type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="compute_sales_target_action" model="ir.actions.act_window">
+            <field name="name">Compute Target Commission</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">compute.sales.target</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new employee.
+                </p>
+                <p>
+                    With just a quick glance on the Odoo employee screen, you
+                    can easily find all the information you need for each person;
+                    contact data, job position, availability, etc.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_compute_sales_target" name="Commission Target Report" action="compute_sales_target_action"
+                  parent="sale.menu_sale_report" sequence="5"/>
+
+
+    </data>
+</odoo>

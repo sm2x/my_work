@@ -1,0 +1,23 @@
+<odoo>
+  <data>
+      <record id="inherit_stock_return_picking_naseej" model="ir.ui.view">
+            <field name="name">stock_return_picking_naseej</field>
+            <field name="model">stock.return.picking</field>
+            <field name="inherit_id" ref="stock.view_stock_return_picking_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='product_return_moves']/tree" position="attributes">
+                    <attribute name="editable">1</attribute>
+                </xpath>
+
+
+                <xpath expr="//tree/field[@name='quantity']" position="after">
+                    <field name="product_lots"/>
+                    <field name="wizard_id"  invisible="1"/>
+                </xpath>
+
+
+            </field>
+        </record>
+  </data>
+</odoo>

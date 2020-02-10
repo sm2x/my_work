@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="price_unit_digits.list">
+      <field name="name">price_unit_digits list</field>
+      <field name="model">price_unit_digits.price_unit_digits</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="price_unit_digits.action_window">
+      <field name="name">price_unit_digits window</field>
+      <field name="res_model">price_unit_digits.price_unit_digits</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="price_unit_digits.action_server">
+      <field name="name">price_unit_digits server</field>
+      <field name="model_id" ref="model_price_unit_digits_price_unit_digits"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="price_unit_digits" id="price_unit_digits.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="price_unit_digits.menu_1" parent="price_unit_digits.menu_root"/>
+    <menuitem name="Menu 2" id="price_unit_digits.menu_2" parent="price_unit_digits.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="price_unit_digits.menu_1_list" parent="price_unit_digits.menu_1"
+              action="price_unit_digits.action_window"/>
+    <menuitem name="Server to list" id="price_unit_digits" parent="price_unit_digits.menu_2"
+              action="price_unit_digits.action_server"/>
+    -->
+  </data>
+</odoo>

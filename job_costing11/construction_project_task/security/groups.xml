@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="engineer_user" model="res.groups">
+            <field name="name">Engineer User</field>
+        </record>
+
+<!--        <record id="dief_manager_user" model="res.groups">-->
+<!--            <field name="name">Manager User</field>-->
+<!--        </record>-->
+
+        <record id="dief_manager_user_oooo_rrrr" model="res.groups">
+            <field name="name">Manager User</field>
+<!--            <field name="category_id" ref="module_category_construction_project_task"/>-->
+<!--            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>-->
+        </record>
+
+    </data>
+</odoo>

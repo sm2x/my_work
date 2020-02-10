@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_bank,access_account_bank,model_account_bank,cheque_payment_group,1,1,1,1
+access_customer_bank,access_customer_bank,model_customer_bank,cheque_payment_group,1,1,1,1
+access_return_reason,access_return_reason,model_return_reason,cheque_payment_group,1,1,1,1
+access_cheque_master,access_cheque_master,model_cheque_master,cheque_payment_group,1,1,1,1
+access_receive_cheque,access_receive_cheque,model_receive_cheque,cheque_payment_group,1,1,1,1
+access_dates_line,access_dates_line,model_dates_line,cheque_payment_group,1,1,1,1
+access_return_cheque,access_return_cheque,model_return_cheque,cheque_payment_group,1,1,1,1
+access_return_reason,access_return_reason,model_return_reason,cheque_payment_group,1,1,1,1
+access_clear_cheque,access_clear_cheque,model_clear_cheque,cheque_payment_group,1,1,1,1
+
+

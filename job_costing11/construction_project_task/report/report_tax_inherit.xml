@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <!-- Inherit tax report (from module account) -->
+<!--        <template id="report_tax_inherit" inherit_id="account.report_tax">-->
+<!--            <xpath expr="//table" position="replace">-->
+
+
+
+<!--                <table class="table table-condensed">-->
+<!--                        <thead>-->
+<!--                            <tr class="text-center">-->
+<!--                                <th>Sale</th>-->
+<!--                                <th>Net</th>-->
+<!--                                <th>Tax</th>-->
+<!--                            </tr>-->
+<!--                        </thead>-->
+<!--                        <tr t-foreach="lines['sale']" t-as="line">-->
+<!--&lt;!&ndash;                            <t t-if="line.get('business_guarantee') !== true">&ndash;&gt;-->
+<!--                                <td><span t-esc="line.get('name')"/></td>-->
+<!--                                <td><span t-att-style="style" t-esc="line.get('net')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>-->
+<!--                                <td><span t-att-style="style" t-esc="line.get('tax')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>-->
+<!--&lt;!&ndash;                            </t>&ndash;&gt;-->
+<!--                      </tr>-->
+<!--                        <tr><td colspan="3"><strong>Purchase</strong></td>-->
+<!--                        </tr>-->
+<!--                        <tr t-foreach="lines['purchase']" t-as="line">-->
+<!--                            <td><span t-esc="line.get('name')"/></td>-->
+<!--                            <td><span t-att-style="style" t-esc="line.get('net')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>-->
+<!--                            <td><span t-att-style="style" t-esc="line.get('tax')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>-->
+<!--                        </tr>-->
+<!--&lt;!&ndash;                        </t>&ndash;&gt;-->
+<!--                    </table>-->
+<!--&lt;!&ndash;                <tr t-foreach="lines['sale']" t-as="line">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span t-if="line.get('business_guarantee') == False">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td><span t-esc="line.get('name')"/></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td><span t-att-style="style" t-esc="line.get('net')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <td><span t-att-style="style" t-esc="line.get('tax')" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </tr>&ndash;&gt;-->
+<!--            </xpath>-->
+<!--        </template>-->
+    </data>
+</odoo>

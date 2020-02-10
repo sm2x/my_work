@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="wizard_return_cheque">
+            <field name="name">return.cheque.wizard</field>
+            <field name="model">return.cheque</field>
+            <field name="arch" type="xml">
+                <form string="Return Cheque">
+                    <group>
+                        <group>
+                            <field name="date_present" style="width:40%%"/>
+                            <field name="date_return" style="width:40%%"/>
+                            <field name="amount" style="width:40%%"/>
+                            <label for="amount_currency" groups="base.group_multi_currency"/>
+                             <div name="amount_div" class="o_row" groups="base.group_multi_currency">
+                                <field name="amount_currency" groups="base.group_multi_currency"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}" groups="base.group_multi_currency"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="reason_id" options="{'no_create': True}"/>
+                            <field name="comment_required" invisible="1"/>
+                            <field name="comment" attrs="{'required':[('comment_required','=',True)]}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="return_cheque" string="Post" type="object" class="oe_highlight"/>
+                        or <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

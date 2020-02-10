@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id='achieved_target_report_template'>
+            <t t-call='web.html_container'>
+                <t t-call='web.external_layout'>
+                    <div class='page'>
+                        <style type="text/css">
+                            table.report_table {
+                            font-size: 14px !important;
+                            border-collapse: collapse !important;
+                            width: 100% !important;
+                            }
+
+                            table.report_table th, table.report_table td {
+                            padding: 8px !important;
+                            text-align: left !important;
+                            }
+
+                            table.report_table tr:nth-child(even){background-color: #f2f2f2 !important;}
+
+                            table.report_table th {
+                            background-color: #4CAF50 !important;
+                            color: white !important;
+                            }
+
+                        </style>
+
+                        <h2 class="text-center" style="margin-bottom:20px;">Sales Persons Achieved Targets</h2>
+                        <t t-foreach="docs" t-as="o">
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-4 text-center">
+                                    Sales Person:
+                                    <span t-esc="o.user_id.name"></span>
+                                </div>
+                                <div class="col-4 text-center">
+                                    Target:
+                                    <span t-esc="o.target_id.name"></span>
+                                </div>
+                                <div class="col-4 text-center">
+                                    Based On:
+                                    <span t-esc="o.type"></span>
+                                </div>
+                            </div>
+                            <b>Commission Rules</b>
+                            <table class="report_table" style="border: 1px;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="40%">Category</th>
+                                        <th t-if="o.computation_target == 'amount'" scope="col" width="30%">Target
+                                            Amount
+                                        </th>
+                                        <th t-if="o.computation_target == 'quantity'" scope="col" width="30%">Target
+                                            Quantity
+                                        </th>
+                                        <th scope="col" width="30%">Percent%</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <t t-foreach='o.target_id.rule_ids' t-as='line'>
+                                        <tr>
+                                            <td>
+                                                <span t-esc="line.categ_id.name"></span>
+                                            </td>
+                                            <t t-if="o.computation_target == 'amount'">
+                                                <td>
+                                                    <span t-esc="line.sales_target"></span>
+                                                </td>
+                                            </t>
+                                            <t t-if="o.computation_target == 'quantity'">
+                                                <td>
+                                                    <span t-esc="line.quantity_target"></span>
+                                                </td>
+                                            </t>
+
+
+                                            <td>
+                                                <span t-esc="line.commission_percent"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <b>Achieved Target</b>
+                            <table class="report_table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="25%">Category</th>
+                                        <th t-if="o.computation_target == 'amount'" scope="col" width="25%">Amount</th>
+                                        <th  t-if="o.computation_target == 'quantity'" scope="col" width="25%">Quantity</th>
+                                        <th scope="col" width="25%">Percent(%)</th>
+                                        <th scope="col" width="25%">Commission</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach='o.line_ids' t-as='line'>
+                                        <tr>
+                                            <td>
+                                                <span t-esc="line.categ_id.name"></span>
+                                            </td>
+                                            <t t-if="o.computation_target == 'amount'">
+                                                <td>
+                                                    <span t-esc="line.amount"></span>
+                                                </td>
+                                            </t>
+                                            <t t-if="o.computation_target == 'quantity'">
+                                                <td>
+                                                    <span t-esc="line.quantity_target"></span>
+                                                </td>
+                                            </t>
+
+                                            <td>
+                                                <span t-esc="line.commission_percent"></span>
+                                            </td>
+                                            <td>
+                                                <span t-esc="line.commission"></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+
+                    </div>
+
+                </t>
+            </t>
+        </template>
+
+
+        <!-- QWeb Reports -->
+        <!-- NAME & FILE_NAME should be the same -->
+        <report
+                id="achieved_target_report"
+                model="target.achieved"
+                report_type="qweb-pdf"
+                string="Achieved Targets"
+                name="sales_person_target.achieved_target_report_template"
+                file="sales_person_target.achieved_target_report_template"
+        />
+
+
+    </data>
+</odoo>

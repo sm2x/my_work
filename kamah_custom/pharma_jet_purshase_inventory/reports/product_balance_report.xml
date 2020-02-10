@@ -1,0 +1,26 @@
+<odoo>
+    <template id='inventory_report_inherits' inherit_id='inventory_report.product_balance_stocks_template'>
+
+        <xpath expr="//group/table/tr" position='after'>
+            <tr>
+                <td>
+                    <b>Brand</b>
+                </td>
+                <td width="50%">
+                    <b><span t-field="o.brand"/></b>
+                </td>
+            </tr>
+        </xpath>
+
+        <xpath expr="//group/table[2]/tr[@class='thead-light']/th" position='after'>
+            <th> Brand </th>
+        </xpath>
+
+        <xpath expr="//group/table[2]/tbody/t[@t-foreach='o.product_balance_lines']/tr/td " position='after'>
+            <td>
+                <span t-field="line.bran"/>
+            </td>
+        </xpath>
+
+    </template>
+</odoo>

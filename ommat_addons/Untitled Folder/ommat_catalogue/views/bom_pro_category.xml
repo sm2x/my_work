@@ -1,0 +1,326 @@
+<odoo>
+    <data>
+
+        <record id="new_accounts_view_category_property_form" model="ir.ui.view">
+            <field name="name">new.accounts.product.category.stock.property.inherit</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="account.view_category_property_form"/>
+            <field name="arch" type="xml">
+                <group name="account_property" position="inside">
+                    <group name="account_stock_property" string="Account Stock Properties"
+                           groups="account.group_account_user">
+                        <field name="other_stock_account_input_id" domain="[('deprecated', '=', False)]"
+                               />
+                        <field name="other_stock_account_output_id" domain="[('deprecated', '=', False)]"
+                               />
+                    </group>
+                </group>
+            </field>
+        </record>
+
+
+        <record id="ommat_mrp_bom_view" model="ir.ui.view">
+            <field name="name">ommat_mrp.bom.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+
+                <field name="product_id" position="after">
+                    <field name="gender"/>
+                    <field name="dynasty"/>
+                    <field name="week_no" force_save="1"/>
+
+
+                </field>
+
+                <field name='type' position="after">
+                    <field name="pro"/>
+                    <field name="lab"/>
+                </field>
+
+                <xpath expr="//form/sheet/notebook/page[3]" position="after">
+                     <page string="Accounts">
+                        <group>
+                            <group>
+                                <field name="labor_expense_account_id" options='{"no_open": True, "no_create": True}'/>
+                                <field name="operation_expense_account_id" options='{"no_open": True, "no_create": True}'/>
+                                <field name="other_expense_account_id" options='{"no_open": True, "no_create": True}'/>
+                                <field name="product_deprecation_account_id" options='{"no_open": True, "no_create": True}' attrs="{'required': [('pro', '=', True)]}"/>
+                            </group>
+                            <group/>
+                        </group>
+                     </page>
+                     <page string="location Details">
+                        <group>
+                            <group>
+                                <field name="location_src_id"/>
+                                <field name="src_lb_type"/>
+                                <field name="src_fp_type"/>
+
+                                <field name="location_dest_id"/>
+                                <field name="dest_lb_type"/>
+                                <field name="dest_fp_type"/>
+                            </group>
+                            <group/>
+                        </group>
+                     </page>
+                </xpath>
+            </field>
+
+        </record>
+
+        <record id="ommat_mrp_production_view" model="ir.ui.view">
+            <field name="name">ommat_mrp.production.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+
+                <button name="button_scrap" position="after">
+                    <button name="create_journal" type="object" string="Create Journal"
+                            attrs="{'invisible': ['|', '|', ('clicked','=', True), ('state','!=', 'done'), ('pro','=', False)]}"/>
+                </button>
+
+                <xpath expr="//form/sheet/notebook/page[3]" position="after">
+                    <page string="Byproducts">
+                        <field name="subproduct_ids">
+                            <tree string="Byproducts"  editable="bottom">
+                                <field name="product_id" domain="[('id', '!=', parent.product_id)]"/>
+                                <field name="product_qty"/>
+                                <field name="product_uom_id" groups="uom.group_uom"/>
+                                <field name="gender"/>
+                                <field name="dynasty"/>
+                                <field name="reason"/>
+                                <field name="week_no" force_save="1"/>
+                            </tree>
+                            <form string="Byproducts">
+                                 <field name="product_id" domain="[('id', '!=', parent.product_id)]"/>
+                                 <field name="product_qty"/>
+                                 <field name="product_uom_id" groups="uom.group_uom"/>
+                            </form>
+                        </field>
+                    </page>
+                    <page string="Products" attrs="{'invisible': [('pro', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="clicked" invisible="1"/>
+                                <field name="product_id_f" invisible="1"/>
+                                <field name="product_id_fm"/>
+                                <field name="product_id_m" invisible="1"/>
+
+                                <field name="journal_id"/>
+                                <field name="e_value_acc_debit"/>
+                                <field name="e_value_acc_credit"/>
+                            </group>
+                            <group>
+                                <field name="product_qty_f" invisible="1"/>
+                                <field name="product_qty_fm" />
+                                <field name="product_qty_m" invisible="1"/>
+                                <field name="product_cost_f" invisible="1"/>
+                                <field name="product_cost_fm" invisible="1"/>
+                                <field name="product_cost_m" invisible="1"/>
+
+                                <field name="production_per"/>
+                                <field name="ommat_dep"/>
+                                <field name="dep_value"/>
+
+                                <field name="e_value"/>
+                                <field name="e_value_per_mo"/>
+
+                            </group>
+                        </group>
+
+                    </page>
+                    <page string="Estimated Cost">
+                        <group>
+                            <group>
+
+                                <field name="labor_expense_amount" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="operation_expense_amount" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="other_expense_amount" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="product_deprecation_amount" attrs="{'invisible': [('pro', '=', False)]}" />
+                            </group>
+                            <group/>
+                        </group>
+                    </page>
+
+                    <page string="Info">
+                        <group>
+                            <group>
+
+                                <field name="gender"/>
+                                <field name="week_no" force_save="1"/>
+                                <field name="pro"/>
+                                <field name="lab"/>
+                            </group>
+                            <group/>
+                        </group>
+                    </page>
+                </xpath>
+
+                <xpath expr="//page[2]//field[@name='finished_move_line_ids']/tree//field[@name='product_id']" position="after">
+                    <field name="gender"/>
+                    <field name="dynasty"/>
+                    <field name="week_no" force_save="1"/>
+                    <field name="loc_type"/>
+                    <field name="state"/>
+                </xpath>
+
+                <field name="product_id" position="after">
+                    <field name="dynasty"/>
+                </field>
+
+                <field name="picking_type_id" position="replace">
+                    <field name="picking_type_id" domain="[('code', '=', 'mrp_operation')]" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                </field>
+                <field name="location_src_id" position="replace">
+                    <field name="location_src_id" domain="[('usage','=','internal')]" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                </field>
+
+                <xpath expr="//form/sheet/notebook/page[3]/group/group/field[@name='location_dest_id']" position="replace">
+                    <field name="location_dest_id" domain="[('usage','=','internal')]"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="ommat_product_template_view" model="ir.ui.view">
+            <field name="name">ommat_product.template.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="scrap"/>
+                <field name="gender"/>
+                <field name="feed_type"/>
+                <field name="dynasty" groups="ommat_catalogue.mangers_approval_group"/>
+
+            </field>
+
+            </field>
+        </record>
+
+        <record id="ommat_stock_move_tree" model="ir.ui.view">
+            <field name="name">ommat_stock.move.view</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_tree_receipt_picking"/>
+            <field name="arch" type="xml">
+                <field name="location_dest_id" position="after">
+                    <field name="gender"/>
+                    <field name="dynasty"/>
+                    <field name="week_no" force_save="1"/>
+                    <field name="loc_type"/>
+                    <field name="mrp_state"/>
+                </field>
+
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="action_stock_moves">
+            <field name="name">Consumed Materials</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.move</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'done')]</field>
+        </record>
+
+        <menuitem name="Consumed Materials" id="action_stock_menu_item" parent="mrp.menu_mrp_manufacturing"
+                  action="action_stock_moves" />
+
+        <record id="ommat_stock_location_view" model="ir.ui.view">
+            <field name="name">ommat_stock.location.view</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <field name="usage" position="after">
+                    <field name="type_l_b"/>
+                    <field name="type_f_p"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_subproduct_list">
+            <field name="name">Sub Products</field>
+            <field name="model">mrp.subproduct</field>
+            <field name="arch" type="xml">
+                <tree string="Byproducts">
+                     <field name="product_id" domain="[('id', '!=', parent.product_id)]"/>
+                     <field name="product_qty"/>
+                     <field name="product_uom_id" groups="uom.group_uom"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_subproduct_form">
+            <field name="name">Sub Product</field>
+            <field name="model">mrp.subproduct</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id" domain="[('id', '!=', parent.product_id)]"/>
+                                 <field name="product_qty"/>
+                                 <field name="product_uom_id" groups="uom.group_uom"/>
+                            </group>
+                            <group>
+                                <field name="gender"/>
+                                <field name="dynasty"/>
+                                <field name="week_no" force_save="1"/>
+                                <field name="state"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+       </record>
+
+        <record model="ir.actions.act_window" id="action_mrp_subproduct">
+            <field name="name">Sub Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.subproduct</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+<!--        <field name="domain">['|', ('unbuild_id', '=', active_id), ('consume_unbuild_id', '=', active_id)]</field>-->
+        </record>
+
+
+
+        <record id="ommat_view_mrp_product_produce_wizard" model="ir.ui.view">
+            <field name="name">ommat MRP Product Produce</field>
+            <field name="model">mrp.product.produce</field>
+            <field name="inherit_id" ref="mrp.view_mrp_product_produce_wizard"/>
+            <field name="arch" type="xml">
+                <field name="product_tracking" position="before">
+                    <label for="product_qty_onhand"/>
+                            <div class="o_row">
+                                <field name="product_qty_onhand"/>
+                            </div>
+                </field>
+
+            </field>
+        </record>
+
+        <record id="ommat_view_mrp_product_produce_wizard_updatttte" model="ir.ui.view">
+            <field name="name">ommat MRP Product Produce updateeee</field>
+            <field name="model">change.production.qty</field>
+            <field name="inherit_id" ref="mrp.view_change_production_qty_wizard"/>
+            <field name="arch" type="xml">
+                <field name="product_qty" position="before">
+                    <label for="product_qty_onhand"/>
+                            <div class="o_row">
+                                <field name="product_qty_onhand"/>
+                            </div>
+                </field>
+
+            </field>
+        </record>
+
+        <menuitem name="Sub Products" id="mrp_subproduct_menu_item" parent="mrp.menu_mrp_manufacturing"
+                  action="action_mrp_subproduct" />
+
+    </data>
+</odoo>

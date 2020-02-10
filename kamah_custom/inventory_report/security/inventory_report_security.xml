@@ -1,0 +1,6 @@
+
+<odoo>
+    <record id="inventory_report_group" model="res.groups">
+      <field name="name">Inventory Reports</field>
+    </record>
+</odoo>

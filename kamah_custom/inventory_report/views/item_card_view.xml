@@ -1,0 +1,59 @@
+
+
+<odoo>
+    <record id="view_form_item_card" model="ir.ui.view">
+            <field name="name">view_form_item_card</field>
+            <field name="model">item.card</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Item Card" sequence="1" >
+                            <group >
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group >
+                                <field name="stock"/>
+                                <field name="product_category"/>
+                            </group>
+                        </group>
+                        <group>
+                            <button name="create_record" string="Load Data" class="oe_highlight" type="object"/>
+                        </group>
+                         <group>
+                              <field name="card_line"  >
+                                <tree editable="bottom" create="false" delete="false">
+                                    <field name="dates"/>
+                                    <field name="refrence"/>
+                                    <field name="product"/>
+                                    <field name="from_loc"/>
+                                    <field name="to_loc"/>
+                                    <field name="qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="inn"/>
+                                    <field name="out"/>
+                                    <field name="balance"/>
+                                </tree>
+                            </field>
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+    <record id="action_item_cards" model="ir.actions.act_window">
+        <field name="name">Item Card</field>
+        <field name="res_model">item.card</field>
+        <field name="view_mode">form</field>
+    </record>
+
+
+    <menuitem
+        id="menu_item_cards"
+        name="Item Card Reports / تقرير كارات الصنف"
+        parent="stock.menu_warehouse_report"
+        action="action_item_cards"
+        sequence="5"
+        />
+
+</odoo>

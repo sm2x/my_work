@@ -1,0 +1,77 @@
+
+<odoo>
+    <report
+        id="product_list_report"
+        model="products.wizard"
+        string="Product List Report"
+        report_type="qweb-html"
+        name="inventory_report.product_list_template"
+        file="inventory_report.product_list_template"
+        />
+
+    <template id="product_list_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <group>
+                            <br></br>
+                            <h3 style="text-align:center ;font: italic bold 25px/30px Georgia, serif">Product List Report</h3>
+
+                            <table class="table" style="border: 1px solid black">
+                                 <tr class="thead-light" >
+                                    <th>Internal Reference</th>
+                                    <th >Name</th>
+                                    <th >Barcode</th>
+                                    <th >Sales Price</th>
+                                    <th >Cost</th>
+                                    <th >Product Category</th>
+                                    <th >Product Type</th>
+                                    <th >Quantity Onhand</th>
+                                    <th >Forecasted Quantity</th>
+                                    <th >Unit Of Measure</th>
+                                 </tr>
+                                 <tbody>
+                                     <t t-foreach="o.products_ids" t-as="p">
+                                         <tr >
+                                            <td>
+                                                <span t-field="p.default_code"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.barcode"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.list_price"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.standard_price"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.categ_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.type"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.qty_available"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.virtual_available"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="p.uom_id"/>
+                                            </td>
+                                         </tr>
+                                     </t>
+                                 </tbody>
+                            </table>
+                        </group>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

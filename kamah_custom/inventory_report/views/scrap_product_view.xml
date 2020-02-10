@@ -1,0 +1,54 @@
+
+<odoo>
+    <record id="view_scrap_product" model="ir.ui.view">
+        <field name="name">view_scrap_product</field>
+        <field name="model">scrap.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Scrap Product" sequence="1" >
+                        <group >
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="location" widget="many2many_tags"/>
+                        </group>
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <group>
+                        <button name="create_scrap_product_line" string="Product Scrap" class="oe_highlight" type="object"/>
+                    </group>
+                     <group>
+                      <field name="scrap_lines"  >
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="product"/>
+                            <field name="refrence"/>
+                            <field name="vend_id"/>
+                            <field name="total_qty"/>
+                            <field name="cost"/>
+                            <field name="avg_cost"/>
+                            <field name="tot_cost"/>
+                        </tree>
+                    </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+      <record id="action_scrap_product" model="ir.actions.act_window">
+        <field name="name">Scrap Product Report</field>
+        <field name="res_model">scrap.product</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_stock_card"
+        name="Scrap Product Report / تقرير الأصناف الهالكه"
+        parent="stock.menu_warehouse_report"
+        action="action_scrap_product"
+        sequence="22"
+        />
+
+</odoo>

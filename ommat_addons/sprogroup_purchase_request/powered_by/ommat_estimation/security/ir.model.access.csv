@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_poultry_group,mangers_approval_group,model_poultry_model,mangers_approval_group,1,1,1,1
+mangers_approval_model,mangers_approval_model,model_weight_model,mangers_approval_group,1,1,1,1
+catalogue_approval_model,catalogue,model_ommat_catalogue,mangers_approval_group,1,1,1,1
+catalogue_approval_company_bridge,catalogue,model_company_bridge,mangers_approval_group,1,1,1,1
+catalogue_approval_strain_bridge,catalogue,model_strain_bridge,mangers_approval_group,1,1,1,1
+

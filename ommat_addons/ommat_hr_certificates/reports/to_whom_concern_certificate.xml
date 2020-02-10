@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="to_whom_concern_certificate_report"
+                model="hr.certificates"
+                string="شهادة لمن يهمه الأمر"
+                report_type="qweb-html"
+                name="ommat_hr_certificates.report_to_whom_concern_certificate_hr_ommat"
+                file="ommat_hr_certificates.report_to_whom_concern_certificate_hr_ommat"
+        />
+        <template id="report_to_whom_concern_certificate_hr_ommat">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <!--                            <style type="text/css">-->
+                            <!--                                table.supplier {-->
+                            <!--                                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;-->
+                            <!--                                border-collapse: collapse;-->
+                            <!--                                width: 100%;-->
+                            <!--                                text-align : center;-->
+                            <!--                                margin :auto;-->
+                            <!--                                }-->
+
+                            <!--                                table.supplier td, table.supplier th {-->
+                            <!--                                border: 1px solid #ddd;-->
+                            <!--                                padding: 8px;-->
+                            <!--                                }-->
+
+                            <!--                                table.supplier tr:nth-child(even){background-color: #f2f2f2;}-->
+
+                            <!--                                table.supplier tr:hover {background-color: #ddd;}-->
+
+                            <!--                                table.supplier th {-->
+                            <!--                                padding-top: 12px;-->
+                            <!--                                padding-bottom: 12px;-->
+                            <!--                                text-align: left;-->
+                            <!--                                background-color: #990000 ;-->
+                            <!--                                color: white;-->
+                            <!--                                text-align : center;-->
+                            <!--                                }-->
+                            <!--                            </style>-->
+
+                            <div margin="0 auto" padding-top="0">
+                                <!--                                <br/>-->
+                                <table width="100%" style="border: 1px solid #ddd; background-color: #EFECEB ;">
+                                    <tr>
+                                        <td width="30%" style="border: 1px solid #ddd;">
+                                            <span>
+                                                <img src="ommat_hr_certificates/static/description/logo.png" alt="logo"
+                                                     width="200px" height="120px"/>
+                                            </span>
+                                        </td>
+                                        <!--                                        <td width="10%"></td>-->
+                                        <!--                                        <td width="10%"></td>-->
+
+                                        <td width="30%" style="border: 1px solid #ddd;" align="center">
+                                            <h3>شهادة لمن يهمه الأمر</h3>
+                                        </td>
+                                        <td width="30%" style="border: 1px solid #ddd;" align="center">
+                                            <h3>الشركة العربية لأمات الدواجن</h3>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <field t-field="o.today_date"/>
+                                    </td>
+                                    <td>
+                                        <span>:</span>
+                                    </td>
+                                    <td>
+                                        <span>تاريخ اليوم</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div align="center">
+                                <span>
+                                    <u>
+                                        <h1>شهادة لمن يهمه الامر</h1>
+                                    </u>
+                                </span>
+                            </div><br/><br/><br/><br/>
+                            <h3><div align="center">
+                                <table>
+                                    <tr align="center">
+                                        <td ><h5>:بأن السيد/ة </h5></td>
+                                        <td><h5>(أمات للدواجن)</h5></td>
+                                        <td colspan="2"><h5> تفيد الشركة العربية لأمات الدواجن المحدودة</h5></td>
+
+
+                                    </tr>
+                                    <tr align="center">
+                                        <td colspan="2"><h3><field t-field="o.emp_position"/> </h3></td>
+                                        <td  ><h5> يعمل لديها بوظيفة </h5></td>
+                                        <td ><h2><field t-field="o.emp_name"/> </h2></td>
+
+                                    </tr>
+
+                                    <tr align="center">
+                                        <td><h5><field t-field="o.leave_end_date"/> </h5></td>
+                                        <td><h5> وحتي </h5></td>
+                                        <td><h5><field t-field="o.leave_start_date"/> </h5></td>
+                                        <td><h5> وهو في اجازة سنوية في الفترة من </h5></td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div></h3><br/><br/>
+                            <div align="center">
+                                <span>
+
+                                        <h4>،،، والله الموفق ،،،</h4>
+
+                                </span>
+                            </div><br/><br/><br/><br/>
+
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span></span>
+                                    </td>
+
+                                    <td>
+                                        <h5><field t-field="o.hr_dept_manager"/></h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>
+                                        <h5>مدير الموارد البشرية</h5>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+
+
+

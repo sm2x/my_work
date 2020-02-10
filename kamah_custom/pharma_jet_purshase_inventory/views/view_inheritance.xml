@@ -1,0 +1,46 @@
+
+<odoo>
+<!--    <record id="view_product_move_group_by" model="ir.ui.view">-->
+<!--        <field name="name">view_product_move_group_by</field>-->
+<!--        <field name="model">stock.move.line</field>-->
+<!--        <field name="inherit_id" ref="stock.stock_move_line_view_search"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--                  <xpath expr="//search" position="inside">-->
+<!--                       <filter string="internal" name="internal"-->
+<!--                              context="{'group_by': 'internal' }"-->
+<!--                              domain="[]">-->
+<!--                      </filter>-->
+<!--                  </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="view_fields_tree_view" model="ir.ui.view">
+        <field name="name">view_fields_tree_view</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="internals" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+
+
+     <record id="view_stock_inventory_line" model="ir.ui.view">
+        <field name="name">view_stock_inventory_line</field>
+        <field name="model">stock.inventory</field>
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='product_id']" position="after">
+                 <field name="cost"/>
+                 <field name="po_date"/>
+                 <field name="vend_id"/>
+            </xpath>
+<!--            <field name="location_id" position="after">-->
+<!--                <field name="cost"/>-->
+<!--            </field>-->
+        </field>
+    </record>
+
+</odoo>

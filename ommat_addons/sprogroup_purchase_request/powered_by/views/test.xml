@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+ <data>
+        <template id="inherited_login_layout" inherit_id="web.login_layout" name="My Theme Login">
+            <xpath expr="//div[@class='text-center small mt-4 pt-3 border-top']" position="replace">
+                <div class="text-center" style="bottom: -50px;">
+                <font color="red">Developed By: </font>
+                <font color="blue">GIT Technical Team</font>
+                <span class="oe_footer_seperator">       </span><br/>
+                <font color="red">Phone: </font>
+                <font color="blue">+202 226 96859</font>
+                <span class="oe_footer_seperator">       </span><br/>
+                <font color="red">website: </font>
+                <font color="blue"> www.git-eg.com</font>
+                <span class="oe_footer_seperator"></span><br/>
+                <font color="red">Address: </font>
+                <font color="blue">1Abdel Hameed Badawy St.Ext,6th Floor Sheraton Heliopolis Cairo,Egypt</font>
+                <span class="oe_footer_seperator"></span><br/>
+<!--                <font color="red">Location: On Google Maps</font>-->
+                <a href="https://www.google.com/maps/place/GIT+Company/@30.105672,31.3785507,17z/data=!3m1!4b1!4m5!3m4!1s0x14581787eedf9fa5:0x129d260a7114b7c2!8m2!3d30.1056674!4d31.3763674&amp;utm_medium=auth" target="_blank">Our Location <span>On Google Maps</span></a>
+                <span class="oe_footer_seperator"></span><br/>
+                <a href="https://git-eg.com/" target="_blank">Powered by <span>GIT</span></a>
+
+                </div>
+
+            </xpath>
+
+        </template>
+ </data>
+</odoo>

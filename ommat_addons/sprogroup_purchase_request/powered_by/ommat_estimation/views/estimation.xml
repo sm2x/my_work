@@ -1,0 +1,100 @@
+<odoo>
+    <data>
+
+
+        <record id="view_ommat_estimation_form" model="ir.ui.view">
+            <field name="name">Estimation Form</field>
+            <field name="model">ommat.catalogue</field>
+            <field name="arch" type="xml">
+                <form string="Estimation Form">
+                    <sheet>
+                        <group>
+                            <group sequence="1">
+                                <field name="strain" required="1"/>
+                                <field name="gender" required="1"/>
+                                <field name="lot_no_omat" required="1"/>
+                            </group>
+                            <group sequence="2">
+                                <field name="bran_type" required="1"/>
+                                <field name="fiscal_year" required="1"/>
+                                <field name="catalogue_date" required="1"/>
+                            </group>
+                        </group>
+                            <notebook>
+                                <page name="Company Catalogue" string="كتالوج الشركة ">
+                                        <field name="catalouge_relation_company" widget="one2many_list">
+                                            <tree string="Catalogue" editable="bottom">
+                                                <field name="date_from"/>
+                                                <field name="date_to"/>
+                                                <field name="int_from" invisible="1"/>
+                                                <field name="week_no"/>
+                                                <field name="production_age"/>
+                                                <field name="scrap"/>
+                                                <field name="biological_feed_units"/>
+
+                                                <field name="total_production"/>
+                                                <field name="output_for_unloading"/>
+                                                <field name="hatching"/>
+                                                <field name="wieght"/>
+                                            </tree>
+
+                                        </field>
+                                </page>
+                                <page name="Strain Catalogue" string="كتالوج السلالة ">
+                                        <field name="catalouge_relation_strain" widget="one2many_list">
+                                            <tree string="Strain Catalogue" editable="bottom">
+                                                <field name="date_from"/>
+                                                <field name="date_to"/>
+
+                                                <field name="week_no"/>
+                                                <field name="production_age"/>
+                                                <field name="scrap"/>
+                                                <field name="biological_feed_units"/>
+
+                                                <field name="total_production"/>
+                                                <field name="output_for_unloading"/>
+                                                <field name="hatching"/>
+                                                <field name="wieght"/>
+                                            </tree>
+
+                                        </field>
+                                </page>
+                            </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ommat_estimation_tree" model="ir.ui.view">
+            <field name="name">Estimation Tree</field>
+            <field name="model">ommat.catalogue</field>
+            <field name="arch" type="xml">
+                <tree string="Estimation Form">
+                    <field name="strain"/>
+                    <field name="gender"/>
+                    <field name="bran_type"/>
+                    <field name="fiscal_year"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ommat_estimation_action" model="ir.actions.act_window">
+            <field name="name">الكتالوجات</field>
+            <field name="res_model">ommat.catalogue</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem
+
+                id="view_ommat_estimation_menu"
+                name="Catalogue"
+                parent="ommat_estimation.ommat_poultry_menu_root"
+                action="view_ommat_estimation_action"
+
+        />
+
+
+    </data>
+</odoo>

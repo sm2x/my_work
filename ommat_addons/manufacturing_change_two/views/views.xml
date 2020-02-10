@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+
+
+        <record id="mrp_change_two_inherit_mrp_bom_form_view" model="ir.ui.view">
+            <field name="name">mrp.change.two.inherit.mrp.bom.form.view</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//sheet" position="before">
+                    <header>
+
+                        <button name="action_mrp_production" string="Create Manufacturing Order" type="object"/>
+                    </header>
+                </xpath>
+
+                <field name="product_id" position="after">
+                    <field name="farming"/>
+                    <field name="cleaning"/>
+
+                </field>
+            </field>
+        </record>
+
+
+        <record id="mrp_change_two_inherit_mrp_production_view" model="ir.ui.view">
+            <field name="name">mrp_change.two.mrp.production.form.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+
+
+                <field name="pro" position="replace">
+                    <field name="type_l_b" attrs="{'readonly': [('state', '=', 'done')]}"/>
+
+                    <field name="pro" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    <field name="farming" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                </field>
+                <field name="lab" position="replace">
+                    <field name="lab" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    <field name="cleaning" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                </field>
+                <field name="gender" position="replace">
+
+                    <field name="gender" attrs="{'readonly': [('state', '=', 'done')]}"/>
+
+
+                </field>
+
+                <field name="week_no" position="replace">
+                    <field name="week_no" force_save="1" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                </field>
+
+
+            </field>
+        </record>
+
+
+        <record id="mrp_change_two_inherit_ommat_catalogue_form_view" model="ir.ui.view">
+            <field name="name">mrp.change.two.inherit.ommat.catalogue.form.view</field>
+            <field name="model">ommat.catalogue</field>
+            <field name="inherit_id" ref="ommat_catalogue.ommat_catalogue_model_form"/>
+            <field name="arch" type="xml">
+                <field name="bat_m_num" position="after">
+                    <field name="date_to_first_week"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

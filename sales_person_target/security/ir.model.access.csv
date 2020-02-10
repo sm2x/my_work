@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_target_salesteam,access_target_salesteam,model_target_salesteam,,1,1,1,1
+access_target_rules,access_target_rules,model_target_rules,,1,1,1,1
+access_payment_target_rules,access_payment_target_rules,model_payment_target_rules,,1,1,1,1
+access_target_achieved,access_target_achieved,model_target_achieved,,1,1,1,1
+access_target_achieved_lines,access_target_achieved_lines,model_target_achieved_lines,,1,1,1,1
+access_target_sales,access_target_sales,model_target_sales,,1,1,1,1

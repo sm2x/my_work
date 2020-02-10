@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="naseej_view_pos_invoicing_form" model="ir.ui.view">
+            <field name="name">pos_invoicing_form</field>
+            <field name="model">pos.invoicing</field>
+            <field name="arch" type="xml">
+                <form string="Orders Invoicing">
+                    <header>
+                        <button name="upload_orders" string="Get Orders" class="oe_highlight" type="object"
+                                />
+                        <button name="create_invoice" id="create_invoice_btn" type="object" string="Create Invoice"
+                                class="oe_highlight"/>
+<!--                        <button name="approve_payment" id="approve_payment_btn" type="object" string="Approve"-->
+<!--                                class="oe_highlight" states="draft"-->
+<!--                                groups="construction_project_task.dief_manager_user_oooo_rrrr"/>-->
+<!--                        <field name="state" widget="statusbar" statusbar_visible="draft,approved,paid"/>-->
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" class="oe_inline" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="journal_id"/>
+                                <field name="upload_clicked"/>
+                            </group>
+                            <group>
+                                <field name="order_state"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="oreders" string="Oreders">
+                                <field name="order_line_ids" nolabel="1">
+                                    <tree editable="top">
+                                        <field name="number"/>
+                                        <field name="project_id"/>
+                                        <field name="job_cost_id"/>
+                                        <field name="type"/>
+                                        <field name="state"/>
+                                        <field name="total_bg"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="pos_invoicing_seq" model="ir.sequence">
+            <field name="name">Pos Invoicing Sequence</field>
+            <field name="code">pos.invoicing.seq</field>
+            <field name="prefix">PG</field>
+            <field name="padding">5</field>
+        </record>
+        <record id="naseej_pos_invoicing_action" model="ir.actions.act_window">
+            <field name="name">Orders Invoicing</field>
+            <field name="res_model">pos.invoicing</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create Orders Invoicing.
+                </p>
+                <p>
+                    Click to create Orders Invoicing.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_item_naseej_pos_invoicing_action" action="naseej_pos_invoicing_action"
+                  parent="point_of_sale.action_pos_pos_form	"/>
+    </data>
+</odoo>

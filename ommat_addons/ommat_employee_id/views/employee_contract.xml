@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+
+        <record id="hr_contract_point_hr_view" model="ir.ui.view">
+            <field name="name">hr_contract_point_hr_view</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='wage']" position="after">
+                    <field name="assignments_value" invisible="1" force_save="1"/>
+                    <field name="deduction_value" force_save="1"  invisible="1" string="asdfgh"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

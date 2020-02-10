@@ -1,0 +1,54 @@
+<odoo>
+    <record id="view_total_inventory" model="ir.ui.view">
+        <field name="name">view_total_inventory</field>
+        <field name="model">total.inventory</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Total Inventory Report" sequence="1" >
+                        <group >
+                            <field name="product_category" widget="many2many_tags"/>
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="vend_id" />
+                        </group>
+                        <group >
+                            <field name="location" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <button name="create_total_inventory_line" string="Get Data" class="oe_highlight" type="object"/>
+                    </group>
+                     <group>
+                      <field name="total_inventory_line"  >
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="product" />
+                            <field name="refrence"/>
+                            <field name="product_uom"/>
+                            <field name="qty"/>
+                            <field name="cost"/>
+                            <field name="sale_pric"/>
+                            <field name="total_cost"/>
+                            <field name="total_price"/>
+                        </tree>
+                      </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_total_inventory_report" model="ir.actions.act_window">
+        <field name="name">Total Inventory Report</field>
+        <field name="res_model">total.inventory</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_total_inventory"
+        name="Total Inventory Report / تقرير أصناف مخزن موجز"
+        parent="stock.menu_warehouse_report"
+        action="action_total_inventory_report"
+        sequence="20"
+        />
+
+</odoo>

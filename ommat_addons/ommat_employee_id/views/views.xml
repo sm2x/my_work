@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+
+        <record id="ommat_hr_loan_form_view" model="ir.ui.view">
+            <field name="name">ommat_hr_loan_form_view</field>
+            <field name="model">ommat.loan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group groups="ommat_employee_id.ommat_employee_id_group" >
+                            <field name="loan_type" />
+                            <field name="loan_start_date"/>
+                            <field name="loan_installment" />
+                        </group>
+                        <group groups="ommat_employee_id.ommat_employee_id_group" >
+                            <field name="loan_total_amount" />
+                            <field name="loan_end_date"/>
+                            <field name="bank_name" />
+                        </group>
+
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ommat_hr_loan_tree_view" model="ir.ui.view">
+            <field name="name">ommat_hr_loan_tree_view</field>
+            <field name="model">ommat.loan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="loan_type" />
+                    <field name="loan_start_date"/>
+                    <field name="loan_installment" />
+                    <field name="loan_total_amount" />
+                    <field name="loan_end_date"/>
+                    <field name="bank_name" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

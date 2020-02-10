@@ -1,0 +1,48 @@
+<odoo>
+    <record id="view_product_balance_stocks" model="ir.ui.view">
+        <field name="name">view_product_balance_stocks</field>
+        <field name="model">product.balance.stocks</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Product Balance Stocks Report" sequence="1" >
+                        <group >
+                            <field name="product_category" />
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="location" widget="many2many_tags" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <button name="get_products" string="Get Products" class="oe_highlight" type="object"/>
+                    </group>
+                     <group>
+                      <field name="product_balance_lines"  >
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="product" />
+                            <field name="refrence" />
+                            <field name="location" />
+                            <field name="qty"/>
+                            <field name="sale_price" />
+                        </tree>
+                      </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_balance_stock_report" model="ir.actions.act_window">
+        <field name="name">Product Balance Stock Report</field>
+        <field name="res_model">product.balance.stocks</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_balance_stock"
+        name="Product Balance Stock Report / تقرير رصيد الأصناف فى جميع المخازن"
+        parent="stock.menu_warehouse_report"
+        action="action_balance_stock_report"
+        sequence="30"
+        />
+
+</odoo>

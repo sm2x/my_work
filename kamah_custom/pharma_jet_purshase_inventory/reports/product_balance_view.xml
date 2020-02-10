@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_product_balance_stocks_reports" model="ir.ui.view">
+        <field name="name">view_product_balance_stocks_reports</field>
+        <field name="model">product.balance.stocks</field>
+        <field name="inherit_id" ref="inventory_report.view_product_balance_stocks"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/group/field[@name='product_category']" position="after">
+                 <field name="brand" widget="many2many_tags"/>
+            </xpath>
+            <xpath expr="//form/sheet/group[3]/field[@name='product_balance_lines']/tree/field[@name='refrence']" position="after">
+                 <field name="bran" string="Brand"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,109 @@
+
+<odoo>
+    <report
+        id="items_sales_report"
+        model="items.sales"
+        string="Items Sales Report"
+        report_type="qweb-html"
+        name="inventory_report.items_sales_template"
+        file="inventory_report.items_sales_template"
+        />
+    <template id="items_sales_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <group>
+                            <br></br>
+                            <h3 style="text-align:center ;font: italic bold 25px/30px Georgia, serif">Items Sales Report</h3>
+                            <br/>
+                            <table class="table " style="border: 1px solid black" width="100%">
+                                <tr>
+                                    <td>
+                                        <b>Location</b>
+                                    </td>
+                                    <td width="50%">
+                                        <b><span t-field="o.location"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Product</b>
+                                    </td>
+                                    <td width="50%">
+                                        <b><span t-field="o.prod_id"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Product Category</b>
+                                    </td>
+                                    <td width="50%">
+                                        <b><span t-field="o.product_category"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <b>Date From   :   </b>
+                                        <b><span t-field="o.date_from"/></b>
+                                    </td>
+                                    <td>
+                                        <b>Date To  :   </b>
+                                        <b><span t-field="o.date_to"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table class="table" style="border: 1px solid black">
+                                 <tr class="thead-light" >
+                                    <th> Product</th>
+                                    <th >Reference</th>
+                                    <th >Sales Price</th>
+                                    <th >Sold Qty</th>
+                                    <th >On Hand Qty</th>
+                                    <th >Total Sales Price</th>
+                                    <th >Total Cost</th>
+                                      <th >Product UOM</th>
+                                      <th >Product Category</th>
+                                 </tr>
+                                 <tbody>
+                                     <t t-foreach="o.items_sales_lines" t-as="line">
+                                         <tr >
+                                            <td>
+                                                <span t-field="line.product"/>
+                                            </td>
+                                            <td >
+                                                <span t-field="line.refrence"/>
+                                            </td>
+                                             <td >
+                                                <span t-field="line.sales_pr"/>
+                                            </td>
+                                             <td>
+                                                 <span t-field="line.sold_qty"/>
+                                            </td>
+                                             <td >
+                                                <span t-field="line.onhand_qty"/>
+                                            </td>
+                                             <td >
+                                                <span t-field="line.tot_sales_pr"/>
+                                            </td>
+                                             <td>
+                                                <span t-field="line.tot_cost"/>
+                                            </td>
+                                             <td>
+                                                <span t-field="line.product_uom"/>
+                                            </td>
+                                             <td>
+                                                <span t-field="line.product_category"/>
+                                            </td>
+                                         </tr>
+                                     </t>
+                                 </tbody>
+                            </table>
+                        </group>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

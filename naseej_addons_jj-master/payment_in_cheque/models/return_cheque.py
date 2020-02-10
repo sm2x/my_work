@@ -1,0 +1,112 @@
+# -*- coding: utf-8 -*-
+
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
+
+
+class ReturnCheque(models.TransientModel):
+    _name = "return.cheque"
+
+    date_present = fields.Date(string='Cheque Present Date', default=fields.Date.context_today, required=True)
+    date_return = fields.Date(string='Cheque Return Date', default=fields.Date.context_today, required=True)
+    amount = fields.Float('Bank Charges', required=True)
+    reason_id = fields.Many2one('return.reason', string='Reason', required=True)
+    comment_required = fields.Boolean(string="Comment Required ?")
+    comment = fields.Text(string="Comment")
+    amount_currency = fields.Monetary('Charges Currency', required=True, compute='compute_amount', readonly=True)
+
+    currency_id = fields.Many2one('res.currency', string='Currency', required=True,
+                                  default=lambda self: self.env.user.company_id.currency_id)
+
+    @api.multi
+    @api.depends('currency_id', 'amount', 'amount_currency')
+    def compute_amount(self):
+        for rec in self:
+            company_id = rec.env.user.company_id
+            rec.amount_currency = rec.amount
+            rec.amount_currency = rec.currency_id._convert(rec.amount_currency, company_id.currency_id, company_id,
+                                                           rec.date_return or fields.Date.today())
+
+    @api.onchange('reason_id')
+    def _onchange_reason(self):
+        if self.reason_id:
+            self.comment_required = self.reason_id.comment_required
+
+    @api.multi
+    def return_cheque(self):
+        cheque_obj = self.env['cheque.master'].browse(self.env.context.get('active_id'))
+        cheque_config = self.env['cheque.config.settings'].search([], order='id desc', limit=1)
+        if not cheque_config.cheque_journal_p_id:
+            raise UserError(_('Set Cheque Payment Journal under Settings !!!'))
+        journal_id = cheque_config.cheque_journal_p_id.id
+        line_ids = []
+        if self.amount and self.amount > 0:
+            line_ids = [(0, 0,
+                         {'journal_id': journal_id,
+                          'account_id': cheque_obj.bank_name.account_id.id,
+                          'name': '/',
+                          'amount_currency': -self.amount_currency or False,
+                          'currency_id': self.currency_id.id,
+                          'credit': self.amount}),
+
+                        (0, 0, {'journal_id': journal_id,
+                                'account_id': cheque_obj.bank_name.return_account_id.id,
+                                'name': 'Bank Charges',
+                                'partner_id': cheque_obj.partner_id.id,
+                                'amount_currency': self.amount_currency or False,
+                                'currency_id': self.currency_id.id,
+                                'debit': self.amount}), ]
+        line_ids.extend([
+            (0, 0,
+             {'journal_id': journal_id,
+              'account_id': cheque_obj.partner_account_id.id,
+              'name': '/',
+              'amount_currency': -cheque_obj.amount_currency or False,
+              'currency_id': cheque_obj.currency_id.id,
+              'credit': cheque_obj.amount}),
+
+            (0, 0, {'journal_id': journal_id,
+                    'account_id': cheque_obj.bank_name.account_id.id,
+                    'name': cheque_obj.name,
+                    'amount_currency': cheque_obj.amount_currency or False,
+                    'currency_id': cheque_obj.currency_id.id,
+                    'debit': cheque_obj.amount}),
+            (0, 0,
+             {'journal_id': journal_id,
+              'account_id': cheque_obj.bank_name.account_id.id,
+              'name': '/',
+              'amount_currency': -cheque_obj.amount_currency or False,
+              'currency_id': cheque_obj.currency_id.id,
+              'credit': cheque_obj.amount}),
+            (0, 0, {'journal_id': journal_id,
+                    'account_id': cheque_obj.bank_name.pdc_account_id.id,
+                    'name': cheque_obj.name,
+                    'amount_currency': cheque_obj.amount_currency or False,
+                    'currency_id': cheque_obj.currency_id.id,
+                    'debit': cheque_obj.amount})
+        ])
+        vals = {
+
+            'journal_id': journal_id,
+            'ref': cheque_obj.name,
+            'date': self.date_return,
+            'line_ids': line_ids,
+        }
+        account_move = self.env['account.move'].create(vals)
+        dates_lines = [
+            (0, 0, {
+                'cheque_state': 'Returned',
+                'state_date': self.date_return,
+                'state_journal': account_move.id
+            })]
+        account_move.post()
+        if cheque_obj.comment:
+            comment = cheque_obj.comment+"\n"+self.reason_id.name
+        else:
+            comment = self.reason_id.name
+        if self.comment:
+            comment = comment+"\n"+self.comment
+        cheque_obj.write({
+            'state': 'returned',
+            'comment': comment,
+            'dates_ids': dates_lines})

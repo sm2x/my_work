@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c609839e-0b85-4a6f-8f2a-1df5737a9b31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../CONTRIBUTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../COPYRIGHT" beforeDir="false" afterPath="$PROJECT_DIR$/../../COPYRIGHT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../../LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/../../MANIFEST.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../account/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_analytic_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_analytic_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_bank_statement.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_bank_statement.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_cash_rounding.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_cash_rounding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_fiscal_year.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_fiscal_year.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_incoterms.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_incoterms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_invoice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_invoice_import_wizard.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_invoice_import_wizard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_journal_dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_journal_dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_payment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/account_reconcile_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/account_reconcile_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/chart_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/chart_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/company.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/company.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/digest.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/digest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/partner.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/partner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/reconciliation_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/reconciliation_widget.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../account/models/res_config_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../account/models/res_config_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hr/models/hr.py" beforeDir="false" afterPath="$PROJECT_DIR$/../hr/models/hr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hr/views/hr_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../hr/views/hr_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_bom.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_bom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_document.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_document.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_production.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_production.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_routing.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_routing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_unbuild.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_unbuild.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_workcenter.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_workcenter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/mrp_workorder.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/mrp_workorder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/res_company.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/res_company.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/res_config_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/res_config_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_picking.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_picking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_production_lot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_production_lot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_scrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_scrap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_traceability.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_traceability.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/models/stock_warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/models/stock_warehouse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/ir_attachment_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/ir_attachment_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_bom_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_bom_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_production_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_production_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_routing_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_routing_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_templates.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_templates.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_unbuild_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_unbuild_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_views_menus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_views_menus.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_workcenter_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_workcenter_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/mrp_workorder_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/mrp_workorder_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/product_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/product_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/res_config_settings_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/res_config_settings_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/stock_move_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/stock_move_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/stock_picking_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/stock_picking_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/stock_scrap_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/stock_scrap_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/views/stock_warehouse_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/views/stock_warehouse_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/change_production_qty.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/change_production_qty.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/change_production_qty_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/change_production_qty_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/mrp_product_produce.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/mrp_product_produce.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/mrp_product_produce_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/mrp_product_produce_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/mrp_workcenter_block_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/mrp_workcenter_block_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/stock_warn_insufficient_qty.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/stock_warn_insufficient_qty.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mrp/wizard/stock_warn_insufficient_qty_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mrp/wizard/stock_warn_insufficient_qty_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/models/pos_order.py" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/models/pos_order.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/chrome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/chrome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/devices.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/devices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/field_text_html.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/field_text_html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/gui.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/gui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/keyboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/keyboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/models.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/popups.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/popups.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/pos.web_editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/pos.web_editor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/screens.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/screens.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/tests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/tour.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/tour.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../point_of_sale/static/src/js/widget_base.js" beforeDir="false" afterPath="$PROJECT_DIR$/../point_of_sale/static/src/js/widget_base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/account_invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/account_invoice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/purchase.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/purchase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/res_config_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/res_config_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/stock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../purchase_stock/models/stock_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/../purchase_stock/models/stock_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/barcode.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/barcode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/product_strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/product_strategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/res_company.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/res_company.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/res_config_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/res_config_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/res_partner.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/res_partner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_inventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_location.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_location.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_move_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_move_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_package_level.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_package_level.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_picking.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_picking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_production_lot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_production_lot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_quant.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_quant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_rule.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_rule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_scrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_scrap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_traceability.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_traceability.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/models/stock_warehouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/models/stock_warehouse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/views/stock_package_level_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/views/stock_package_level_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/views/stock_picking_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/views/stock_picking_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/product_replenish.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/product_replenish.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/product_replenish_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/product_replenish_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_backorder_confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_backorder_confirmation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_backorder_confirmation_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_backorder_confirmation_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_change_product_qty.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_change_product_qty.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_change_product_qty_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_change_product_qty_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_immediate_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_immediate_transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_immediate_transfer_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_immediate_transfer_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_overprocessed_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_overprocessed_transfer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_overprocessed_transfer_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_overprocessed_transfer_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_package_destination.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_package_destination.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_package_destination_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_package_destination_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_picking_return.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_picking_return.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_picking_return_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_picking_return_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_quantity_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_quantity_history.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_quantity_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_quantity_history.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_rules_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_rules_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_rules_report_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_rules_report_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_scheduler_compute.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_scheduler_compute.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_scheduler_compute_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_scheduler_compute_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_track_confirmation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_track_confirmation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_track_confirmation_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_track_confirmation_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_warn_insufficient_qty.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_warn_insufficient_qty.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock/wizard/stock_warn_insufficient_qty_views.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stock/wizard/stock_warn_insufficient_qty_views.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/account_chart_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/account_chart_template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/account_invoice.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/account_invoice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/account_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/account_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/res_config_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/res_config_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stock_account/models/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/../stock_account/models/stock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/Gruntfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../web/Gruntfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../web/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/__manifest__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../web/__manifest__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/../web/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../web/controllers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/controllers/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../web/controllers/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/controllers/pivot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../web/controllers/pivot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../website_sale/controllers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../website_sale/controllers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../website_sale/controllers/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/../website_sale/controllers/backend.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../website_sale/controllers/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../website_sale/controllers/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/changelog" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/changelog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/compat" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/compat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/control" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/control" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/copyright" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/copyright" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/init" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/init" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/install" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/install" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/logrotate" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/logrotate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/odoo.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/odoo.service" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/postinst" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/postinst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/postrm" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/postrm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../debian/py3dist-overrides" beforeDir="false" afterPath="$PROJECT_DIR$/../../debian/py3dist-overrides" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/../../setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../setup.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wizard/compute_sales_target.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="118" column="48" selection-start-line="118" selection-start-column="48" selection-end-line="118" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reports/achieved_target_report.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="581">
+              <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="86" selection-start-line="5" selection-start-column="86" selection-end-line="5" selection-end-column="86" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/target_achieved.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="28" column="22" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/target_achieved_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wizard/compute_sales_target.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="58">
+              <caret line="17" column="87" selection-start-line="17" selection-start-column="78" selection-end-line="17" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/sales_target.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-512">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/sales_target_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" column="2" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Configuration&quot;</find>
+      <find>menu_sale_config</find>
+      <find>print</find>
+      <find>target.salesteam</find>
+      <find>return {'</find>
+      <find>return {</find>
+      <find>no_contracts</find>
+      <find>payment_ids =</find>
+      <find>get_wkh</find>
+      <find>return request.env['ir.actions.report'].get_wkh</find>
+      <find>payment_ids</find>
+      <find>_get_payment_info_JSON</find>
+      <find>_get_payments_vals</find>
+      <find>amount_to_show</find>
+      <find>residual</find>
+      <find>total_sales</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/../sale</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/../</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/views/salesteam_target_view.xml" />
+        <option value="$PROJECT_DIR$/models/target_per_salesteam.py" />
+        <option value="$PROJECT_DIR$/models/sales_target_lines.py" />
+        <option value="$PROJECT_DIR$/models/__init__.py" />
+        <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/__manifest__.py" />
+        <option value="$PROJECT_DIR$/models/target_achieved.py" />
+        <option value="$PROJECT_DIR$/../web/controllers/main.py" />
+        <option value="$PROJECT_DIR$/reports/achieved_target_report.xml" />
+        <option value="$PROJECT_DIR$/views/sales_target_view.xml" />
+        <option value="$PROJECT_DIR$/models/sales_target.py" />
+        <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
+        <option value="$PROJECT_DIR$/wizard/compute_sales_target.xml" />
+        <option value="$PROJECT_DIR$/wizard/compute_sales_target.py" />
+        <option value="$PROJECT_DIR$/views/target_achieved_view.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="80" />
+    <option name="y" value="71" />
+    <option name="width" value="1291" />
+    <option name="height" value="658" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sales_person_target" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sales_person_target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sales_person_target" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sales_person_target" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sales_person_target" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sales_person_target" type="462c0819:PsiDirectoryNode" />
+              <item name="reports" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sales_person_target" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sales_person_target" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sales_person_target" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sales_person_target" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sales_person_target" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sales_person_target" type="462c0819:PsiDirectoryNode" />
+              <item name="wizard" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c609839e-0b85-4a6f-8f2a-1df5737a9b31" name="Default Changelist" comment="" />
+      <created>1564603597987</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564603597987</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="61" y="24" width="1305" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19188768" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wizard/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../web/controllers/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="1703" column="52" selection-start-line="1703" selection-start-column="52" selection-end-line="1703" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="86" selection-start-line="5" selection-start-column="86" selection-end-line="5" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sales_target.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-512">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/sales_target_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="2" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wizard/compute_sales_target.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="17" column="87" selection-start-line="17" selection-start-column="78" selection-end-line="17" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wizard/compute_sales_target.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="118" column="48" selection-start-line="118" selection-start-column="48" selection-end-line="118" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reports/achieved_target_report.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/target_achieved.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/target_achieved_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

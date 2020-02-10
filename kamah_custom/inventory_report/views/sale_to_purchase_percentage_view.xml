@@ -1,0 +1,54 @@
+
+<odoo>
+    <record id="view_sale_purchase_percentage" model="ir.ui.view">
+        <field name="name">view_sale_purchase_percentage</field>
+        <field name="model">sale.purchase.percentage</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Sale To Purchase Percentage" sequence="1" >
+                        <group >
+                            <field name="prod_id"/>
+                            <field name="location" widget="many2many_tags"/>
+                        </group>
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <group>
+                        <button name="create_sale_percentage_line" string="Get Percentage" class="oe_highlight" type="object"/>
+                    </group>
+                     <group>
+                      <field name="percentage_lines"  >
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="product"/>
+                            <field name="refrence"/>
+                            <field name="starting_balance"/>
+                            <field name="purchase_qty"/>
+                            <field name="ending_balance"/>
+                            <field name="sales_qty"/>
+                            <field name="sales_ending_percentage"  />
+                        </tree>
+                    </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+      <record id="action_sale_purchase_percentage" model="ir.actions.act_window">
+        <field name="name">Sale To Purchase Report</field>
+        <field name="res_model">sale.purchase.percentage</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_sale_to_percentage"
+        name="Sale To Purchase Percentage Report / تقرير نسبه المبيعات الى المشتريات"
+        parent="stock.menu_warehouse_report"
+        action="action_sale_purchase_percentage"
+        sequence="24"
+        />
+
+</odoo>

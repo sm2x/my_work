@@ -1,0 +1,90 @@
+
+<odoo>
+    <report
+                id="stock_card_report"
+                model="stock.card"
+                string="Stock Card Report"
+                report_type="qweb-html"
+                name="inventory_report.stock_card_template"
+                file="inventory_report.stock_card_template"
+        />
+    <template id="stock_card_template">
+            	<t t-call="web.html_container">
+                	<t t-foreach="docs" t-as="o">
+                    	<t t-call="web.external_layout">
+                        	<div class="page">
+                            	<group>
+                            		<br></br>
+                                	<h3 style="text-align:center ;font: italic bold 25px/30px Georgia, serif">Stock Card Report</h3>
+                                    <br/>
+                                	<table class="table " style="border: 1px solid black" width="100%">
+                                    	<tr>
+                                        	<td>
+                                            	<b>Location</b>
+                                        	</td>
+                                        	<td width="50%">
+                                            	<b><span t-field="o.stock"/></b>
+                                        	</td>
+                                    	</tr>
+                                        <tr>
+                                             <td>
+                                                <b>Start Date   :   </b>
+                                                <b><span t-field="o.start_date"/></b>
+                                            </td>
+                                            <td>
+                                                <b>End Date   :   </b>
+                                                <b><span t-field="o.end_date"/></b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <table class="table" style="border: 1px solid black">
+                                         <tr class="thead-light" >
+                                            <th>    Product</th>
+                                            <th >Reference</th>
+                                            <th >Product UOM</th>
+                                            <th >Initial Stock</th>
+                                            <th >In</th>
+                                            <th >Out</th>
+                                            <th >Balance</th>
+<!--                                            <th >Final Stock</th>-->
+                                         </tr>
+                                         <tbody>
+                                             <t t-foreach="o.card_line" t-as="line">
+                                                 <tr >
+                                                    <td>
+                                                        <span t-field="line.product"/>
+                                                    </td>
+
+                                                    <td >
+                                                        <span t-field="line.refrence"/>
+                                                    </td>
+                                                     <td >
+                                                        <span t-field="line.product_uom"/>
+                                                    </td>
+<!--                                                     <td >-->
+<!--                                                        <span t-field="line.initial_stock"/>-->
+<!--                                                    </td>-->
+                                                     <td >
+                                                        <span t-field="line.inn"/>
+                                                    </td>
+                                                     <td >
+                                                        <span t-field="line.out"/>
+                                                    </td>
+                                                     <td >
+                                                        <span t-field="line.balance"/>
+                                                    </td>
+                                                     <td>
+                                                        <span t-field="line.final_Stock"/>
+                                                    </td>
+                                                 </tr>
+                                             </t>
+                                         </tbody>
+                                    </table>
+                                </group>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+    </template>
+</odoo>

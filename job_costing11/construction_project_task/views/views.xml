@@ -1,0 +1,488 @@
+<odoo>
+    <data>
+        <record id="view_task_inherit" model="ir.ui.view">
+            <field name="name">project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <button name='action_assign_to_me' position="after">
+                    <button name="create_RQ" string="Create RQ" class="oe_highlight" type="object"
+                            attrs="{'invisible': [('rq_clicked', '=', True)]}"/>
+                    />
+                </button>
+                <field name="project_id" position="after">
+                    <field name="rq_clicked" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="kanban_task_inherit" model="ir.ui.view">
+            <field name="name">project_task_kanban_dief</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//kanban/templates/t/div/div[@class='oe_kanban_content']/div[@class='o_kanban_record_top']/div[@class='o_kanban_record_headings']/strong[@class='o_kanban_record_title']/field[@name='name']"
+                       position="after">
+                        <br/>Starting Date: <field name="date_start"/>
+                        <br/>Ending Date: <field name="date_end"/>
+                    <div t-if="record.parent_task_id.value">
+                        <br/>Parent Job: <field name="parent_task_id"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="dief_tree_invoice_inherit" model="ir.ui.view">
+            <field name="name">tree_invoice_inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name='partner_id' position="after">
+                    <field name="project_id" force_save="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="dief_form_invoice_inherit" model="ir.ui.view">
+            <field name="name">form_invoice_inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name='amount_total' position="after">
+                    <field name="new_total"/>
+                </field>
+
+                <xpath expr="//sheet/notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']"
+                       position="replace">
+                    <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}"
+                           domain="[('type_tax_use', 'in', ('business_guarantee', 'sale')),('company_id', '=', parent.company_id)]"/>
+                    <!--                    context="{'type':parent.type}"-->
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id="dief_invoice_supplier_form_invoice" model="ir.ui.view">
+            <field name="name">dief_invoice_supplier_form_invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name='partner_id' position="after">
+                    <field name="project_id" force_save="1"/>
+                </field>
+                <xpath expr="//sheet/notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']"
+                       position="replace">
+                    <field name="invoice_line_tax_ids" widget="many2many_tags" options="{'no_create': True}"
+                           domain="[('type_tax_use', 'in', ('purchase','business_guarantee')),('company_id', '=', parent.company_id)]"/>
+                    <!--                    context="{'type':parent.type}"-->
+
+                </xpath>
+                <field name='residual' position="before">
+                    <field name="new_total"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="dief_invoice_supplier_tree_invoice" model="ir.ui.view">
+            <field name="name">dief_invoice_supplier_tree_invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                <field name='partner_id' position="after">
+                    <field name="project_id" force_save="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="dief_purchase_order_form" model="ir.ui.view">
+            <field name="name">dief_purchase_order_form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name='subcontractor_id' position="after">
+                    <field name="project_id"/>
+                    <field name="bill_clicked" invisible="1"/>
+                </field>
+                <field name='picking_id' position="after">
+                    <field name="desc"/>
+                </field>
+
+                <button name='action_rfq_send' position="after">
+                    <button name="create_bill" type="object" string="Create Bill"
+                            class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'purchase'),('bill_clicked', '=', True)]}"/>
+                </button>
+
+
+            </field>
+        </record>
+
+        <record id="dief_purchase_order_tree" model="ir.ui.view">
+            <field name="name">dief_purchase_order_tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <field name='name' position="after">
+                    <field name="project_id"/>
+                    <field name="desc"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="dief_view_partner_form" model="ir.ui.view">
+            <field name="name">dief_view_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name='category_id' position="after">
+                    <field name="vir"/>
+                </field>
+
+            </field>
+        </record>
+
+
+        <record id="dief_form_account_tax_inherit" model="ir.ui.view">
+            <field name="name">dief_form_account_tax_inherit</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <field name='name' position="after">
+                    <field name="business_guarantee"/>
+                    <!--                    <field name="tax_type" force_save="1"/>-->
+                </field>
+            </field>
+        </record>
+
+        <record id="dief_material_purchase_requisition_form_view" model="ir.ui.view">
+            <field name="name">dief_material_purchase_requisition_form_view</field>
+            <field name="model">material.purchase.requisition</field>
+            <field name="inherit_id" ref="material_purchase_requisitions.material_purchase_requisition_form_view"/>
+            <field name="arch" type="xml">
+                <button name='request_stock' position="after">
+                    <button name="request_po" type="object" string="Create PO"
+                            class="btn-primary"
+                            groups="material_purchase_requisitions.group_purchase_requisition_user"
+                            attrs="{'invisible': ['|',('state', 'not in', ['stock','approve', 'receive']),('po_checked','=',True)]}"/>
+                     <button name="action_email_send" type="object" string="Send Email"
+                            class="btn-primary"
+                            groups="material_purchase_requisitions.group_purchase_requisition_user"/>
+
+<!--                            attrs="{'invisible': ['|',('state', 'not in', ['stock','approve', 'receive']),('po_checked','=',True)]}"-->
+
+                </button>
+
+                <button name='request_po' position="after">
+                    <button name="request_tender" type="object" string="Create Tender" states="approve"
+                            class="btn-primary"
+                            groups="material_purchase_requisitions.group_purchase_requisition_user"
+                            attrs="{'invisible': ['|','|',('state', 'not in', ['stock', 'approve','receive']),('tender_checked','=',True),('po_checked','=',True)]}"/>
+                </button>
+
+                <button name="action_show_po" position="after">
+                    <button class="oe_stat_button" type="object" icon="fa-book"
+                            name="action_view_tender" string="Purchase Agreements"/>
+
+                </button>
+
+                <button name='request_stock' position="replace">
+                    <button name="request_stock" type="object" string="Create Picking" states="approve"
+                            class="btn-primary"
+                            groups="construction_project_task.engineer_user"
+                            attrs="{'invisible': ['|',('state', 'not in', ['approve','Purchase']),('pick_checked','=',True)]}"/>
+                </button>
+                <field name="state" position="replace">
+                    <field name="state" widget="statusbar" string="confirm"
+                           statusbar_visible="draft,dept_confirm,ir_approve,approve,stock,Purchase,receive"/>
+
+                </field>
+                <field name="department_id" position="after">
+                    <field name="po_checked" invisible="1"/>
+                    <field name="pick_checked" invisible="1"/>
+                    <field name="tender_checked" invisible="1"/>
+
+                </field>
+            </field>
+        </record>
+
+        <!--Email template -->
+        <record id="dief_email_template_edi_req" model="mail.template">
+            <field name="name">Material Requisitions/ BOQ</field>
+            <field name="email_from">
+                ${(object.sudo().create_uid.email and '&quot;%s&quot; &lt;%s&gt;' % (object.sudo().create_uid.name, object.sudo().create_uid.email) or '')|safe}
+            </field>
+            <field name="subject">${object.company_id.name} RFQ FROM (Ref ${object.name or 'n/a' })</field>
+            <field name="partner_to">${object.employee_id.id}</field>
+            <field name="model_id" ref="material_purchase_requisitions.model_material_purchase_requisition"/>
+            <field name="auto_delete" eval="True"/>
+<!--            <field name="report_template" ref="report_purchase_quotation"/>-->
+<!--            <field name="report_name">RFQ_${(object.name or '').replace('/','_')}</field>-->
+            <field name="lang">${object.employee_id.lang}</field>
+            <field name="body_html"><![CDATA[
+Dear DD
+toz fek
+]]></field>
+        </record>
+
+        <!--Default Notification Email template for invoices-->
+        <record id="dief_mail_template_data_notification_email_mpr" model="mail.template">
+            <field name="name">Material Purchase Requisition Notification Email</field>
+            <field name="subject">${object.subject}</field>
+            <field name="model_id" ref="mail.model_mail_message"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[<html>
+                <head></head>
+                % set company = record and record.company_id or ctx.get('company')
+                <body style="margin: 0; padding: 0;">
+<!--                <table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed" summary="o_mail_notification">-->
+<!--                    <tbody>-->
+
+<!--                      &lt;!&ndash; HEADER &ndash;&gt;-->
+<!--                      <tr>-->
+<!--                        <td align="center" style="min-width: 590px;">-->
+<!--                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px;">-->
+<!--                            <tr>-->
+<!--                              <td valign="middle">-->
+<!--                                  <span style="font-size:20px; color:white; font-weight: bold;">-->
+<!--                                      ${object.record_name}-->
+<!--                                  </span>-->
+<!--                              </td>-->
+<!--                              <td valign="middle" align="right">-->
+<!--                                  <img src="/logo.png?company=${company.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${company.name}">-->
+<!--                              </td>-->
+<!--                            </tr>-->
+<!--                          </table>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+
+<!--                      &lt;!&ndash; CONTENT &ndash;&gt;-->
+<!--                      <tr>-->
+<!--                        <td align="center" style="min-width: 590px;">-->
+<!--                          <table width="590" border="0" cellpadding="0" bgcolor="#ffffff" style="min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px;">-->
+<!--                            <tbody>-->
+<!--                              <td valign="top" style="font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;">-->
+<!--                                ${object.body | safe}-->
+<!--                              </td>-->
+<!--                            </tbody>-->
+<!--                          </table>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+
+<!--                      &lt;!&ndash; FOOTER &ndash;&gt;-->
+<!--                      <tr>-->
+<!--                        <td align="center" style="min-width: 590px;">-->
+<!--                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px;">-->
+<!--                            <tr>-->
+<!--                              <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">-->
+<!--                                ${company.name}<br/>-->
+<!--                                ${company.phone or ''}-->
+<!--                              </td>-->
+<!--                              <td valign="middle" align="right" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">-->
+<!--                                % if company.email:-->
+<!--                                <a href="mailto:${company.email}" style="text-decoration:none; color: white;">${company.email}</a><br/>-->
+<!--                                % endif-->
+<!--                                % if company.website:-->
+<!--                                    <a href="${company.website}" style="text-decoration:none; color: white;">-->
+<!--                                        ${company.website}-->
+<!--                                    </a>-->
+<!--                                % endif-->
+<!--                              </td>-->
+<!--                            </tr>-->
+<!--                          </table>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+<!--                      <tr>-->
+<!--                        <td align="center">-->
+<!--                            Powered by <a href="https://www.odoo.com">Odoo</a>.-->
+<!--                        </td>-->
+<!--                      </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--                </body>-->
+<!--                </html>-->
+            ]]></field>
+        </record>
+
+        <record model="ir.ui.view" id="view_subcontract_report_tree">
+            <field name="name">subcontract.report.tree</field>
+            <field name="model">subcontract.report</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="project"/>
+                    <field name="engineer" string="Customer"/>
+                    <field name="business_guarantee"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_subcontract_report_form">
+            <field name="name">subcontract_report_form</field>
+            <field name="model">subcontract.report</field>
+            <field name="arch" type="xml">
+                <form string="Subcontract Report">
+                    <header>
+                        <button name="update_job_order" string="Update Job Order"
+                                class="oe_highlight" type="object"
+                                attrs="{'invisible': [('update_clicked', '=', True)]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="project"/>
+                                <field name="payment_term"/>
+                                <field name="update_clicked" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="engineer"/>
+                                <field name="business_guarantee"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="job_order"/>
+                            </group>
+                            <group/>
+                        </group>
+                        <notebook>
+                            <page name="Purchase Order lines" string="Purchase Order Lines">
+                                <field name="order_line" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <!--                                        <field name="analytic_account_id"/>-->
+                                        <!--                                        <field name="job_cost_id"-->
+                                        <!--                                               domain="[('state', '=', 'approve'), ('analytic_id', '=', analytic_account_id)]"/>-->
+                                        <!--                                        <field name="job_cost_line_id" domain="[('direct_id', '=', job_cost_id)]"/>-->
+                                        <field name="quantity"/>
+                                        <field name="uom_id"/>
+                                        <field name="list_price"/>
+                                        <field name="taxes_id" widget="many2many_tags"/>
+                                        <field name="is_created" invisible="True"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <label for="penal_conditions"/>
+                        <field name="penal_conditions"/>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_subcontract_report" model="ir.actions.act_window">
+            <field name="name">Subcontract Report</field>
+            <field name="res_model">subcontract.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create Subcontract Report.
+                </p>
+                <p>
+                    Click to create Subcontract Report.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_action_subcontract_report"
+                  action="action_subcontract_report" parent="odoo_job_costing_management.menu_job_cost_configuration"/>
+
+
+        <record model="ir.ui.view" id="view_payment_guarantee_tree">
+            <field name="name">payment.guarantee.tree</field>
+            <field name="model">payment.guarantee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="project_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dief_view_payment_guarantee_form" model="ir.ui.view">
+            <field name="name">payment_guarantee_form</field>
+            <field name="model">payment.guarantee</field>
+            <field name="arch" type="xml">
+                <form string="Payment Business Guarantee">
+                    <header>
+
+                        <button name="upload_invoices" string="Get Invoices"
+                                class="oe_highlight" type="object" states="draft"/>
+                        <button name="create_payment" id="create_payment_btn" type="object" string="Create Payments"
+                                class="oe_highlight" states="approved"/>
+                        <button name="approve_payment" id="approve_payment_btn" type="object" string="Approve"
+                                class="oe_highlight" states="draft"
+                                groups="construction_project_task.dief_manager_user_oooo_rrrr"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,approved,paid"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" class="oe_inline" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project_id"/>
+                                <field name="journal_id"/>
+                                <field name="upload_clicked"/>
+                            </group>
+                            <group>
+                                <field name="invoice_type"/>
+                                <field name="invoice_state"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="invoices" string="Invoices">
+                                <field name="payment_guarantee_line_ids" nolabel="1">
+                                    <tree editable="top">
+                                        <field name="number"/>
+                                        <field name="project_id"/>
+                                        <field name="job_cost_id"/>
+                                        <field name="type"/>
+                                        <field name="state"/>
+                                        <field name="total_bg"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="payment_guarantee_seq" model="ir.sequence">
+            <field name="name">Payment Guarantee Sequence</field>
+            <field name="code">payment.guarantee.seq</field>
+            <field name="prefix">PG</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="action_payment_guarantee" model="ir.actions.act_window">
+            <field name="name">Payment Business Guarantee</field>
+            <field name="res_model">payment.guarantee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create Payment Business Guarantee.
+                </p>
+                <p>
+                    Click to create Payment Business Guarantee.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_item_action_payment_guarantee"
+                  action="action_payment_guarantee" parent="odoo_job_costing_management.menu_job_cost_configuration"/>
+
+    </data>
+</odoo>

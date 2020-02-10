@@ -1,0 +1,67 @@
+
+<odoo>
+    <record id="view_form_stock_card" model="ir.ui.view">
+            <field name="name">view_form_stock_card</field>
+            <field name="model">stock.card</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Stock Card" sequence="1" >
+                            <group >
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group >
+                                <field name="stock"/>
+                                <field name="product_category"/>
+                            </group>
+                        </group>
+                        <group>
+
+                            <button name="create_record" string="Load Data" class="oe_highlight" type="object"/>
+                        </group>
+                         <group>
+                              <field name="card_line"  >
+                                <tree editable="bottom" create="false" delete="false">
+                                    <field name="product"/>
+                                    <field name="refrence"/>
+                                    <field name="product_uom"/>
+<!--                                    <field name="initial_stock"/>-->
+                                    <field name="inn"/>
+                                    <field name="out"/>
+                                    <field name="balance"/>
+                                    <field name="final_Stock"/>
+                                </tree>
+                            </field>
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+    <record id="action_stock_cards" model="ir.actions.act_window">
+        <field name="name">Stock Card</field>
+        <field name="res_model">stock.card</field>
+        <field name="view_mode">form</field>
+    </record>
+    <record id="action_product_report" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_stock_cards"
+        name="Stock Card Reports / تقرير كارات الصنف"
+        parent="stock.menu_warehouse_report"
+        action="action_stock_cards"
+        sequence="4"
+        />
+    <menuitem
+        id="menu_product_report"
+        name="Product Report / تقرير المنتجات"
+        parent="stock.menu_warehouse_report"
+        action="action_product_report"
+        sequence="18"
+        />
+</odoo>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="thanking_certificate_report"
+                model="hr.certificates"
+                string="شهادة شكر وتقدير"
+                report_type="qweb-html"
+                name="ommat_hr_certificates.report_thanking_certificate_hr_ommat"
+                file="ommat_hr_certificates.report_thanking_certificate_hr_ommat"
+        />
+        <template id="report_thanking_certificate_hr_ommat">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page" dir="rtl">
+                            <div margin="0 auto" padding-top="0">
+                                <table width="100%" style="border: 1px solid #ddd; background-color: #EFECEB ;">
+                                    <tr>
+                                        <td width="30%" style="border: 1px solid #ddd;" align="center">
+                                            <h3>الشركة العربية لأمات الدواجن</h3>
+                                        </td>
+                                        <td width="30%" style="border: 1px solid #ddd;" align="center">
+                                            <h3>شهادة شكر وتقدير</h3>
+                                        </td>
+                                        <td width="30%" style="border: 1px solid #ddd;">
+                                            <span>
+                                                <img src="ommat_hr_certificates/static/description/logo.png" alt="logo"
+                                                     width="200px" height="120px"/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+
+
+                            <table align="left">
+                                <tr>
+                                    <td>
+                                        <span>التاريخ </span>
+                                    </td>
+                                    <td>
+                                        <span>:</span>
+                                    </td>
+                                    <td>
+                                        <field t-field="o.today_date"/>
+                                    </td>
+
+
+                                </tr>
+                            </table>
+
+                            <br/><br/>
+
+                            <div align="center">
+                                <span>
+                                    <u>
+                                        <h1>شهادة شكر وتقدير</h1>
+                                    </u>
+                                </span>
+                            </div>
+                            <br/><br/>
+
+                            <div align="right">
+                                <span>
+
+                                    <p><h4>  تتقدم الشركه العربيه لأمات الدواجن المحدوده &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (<field t-field="o.company_id.name"/> ) &amp;nbsp;</h4></p>
+                                    <p></p>
+
+                                    <p><h4>للسيد/ة  <field t-field="o.emp_name.name"/>&amp;nbsp; بكثير من الشكر والتقدير على الاداء والسلوك المتميز، والمساهمه فى <field t-field="o.text"/>&amp;nbsp;  خلال فترة خدمته بالشركة. </h4></p>
+
+                                    <p></p>
+                                    <p><h4><b>نتمنى له دوام التقدم والازدهار...</b></h4></p>
+                                </span>
+                            </div>
+
+                            <div align="center">
+                                <span>
+
+                                        <h4>،،، والله الموفق ،،،</h4>
+
+                                </span>
+                            </div><br/><br/><br/><br/>
+
+
+                            <table align="left">
+                                <tr align="center">
+                                    <td>
+                                        <span></span>
+                                    </td>
+
+                                    <td>
+                                        <h5><field t-field="o.gm"/></h5>
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td align="center">
+                                        <span/>
+                                    </td>
+                                    <td align="center">
+                                        <h5>المدير العام</h5>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+
+
+

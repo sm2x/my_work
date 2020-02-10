@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+     <!--  Bank Form View -->
+        <record model="ir.ui.view" id="receivable_Portfolio_id_form">
+            <field name="name">Receivable Portfolio Form</field>
+            <field name="model">receivable.portfolio</field>
+            <field name="arch" type="xml">
+                <form string="Receivable Portfolio Form">
+                    <header>
+                        <button name="receive_cheques" string="Receive Cheques" type="object" attrs="{'invisible':[('post_checked','=',True)]}"/>
+                    </header>
+                    <sheet>
+                        <div>
+                        <label for="receivable_sequence_id" string="Portfolio Number:"/>
+                        <field name="receivable_sequence_id" />
+                    </div>
+                         <group>
+                             <group>
+                                 <field name="date"/>
+                                 <field name="post_checked" invisible="1"/>
+                             </group>
+                             <group>
+                                <field name="desc" />
+                            </group>
+                        </group>
+
+                        <notebook>
+                        <page string="Cheques">
+                            <field name="receiveACheque_ids" widget="one2many_list">
+                                <tree string="Cheques" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="partner_account_id"/>
+                                    <field name="received_date"/>
+                                    <field name="cheque_date"/>
+                                    <field name="bank_name"/>
+                                    <field name="amount"/>
+                                    <field name="currency_id"/>
+                                    <field name="amount_currency"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--  Bank Tree View -->
+        <record model="ir.ui.view" id="receivable_Portfolio_id_tree">
+            <field name="name">Receivable Portfolio tree</field>
+            <field name="model">receivable.portfolio</field>
+            <field name="arch" type="xml">
+                <tree string="Receivable Portfolio Tree">
+                    <field name="date"/>
+                    <field name="desc"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="receivable_Portfolio_id_action">
+            <field name="name">Receivable Portfolio action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">receivable.portfolio</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a Receivable Portfolio
+              </p><p>
+                Create New Receivable Portfolio.
+              </p>
+            </field>
+        </record>
+
+        <record id="receivable_seq" model="ir.sequence">
+            <field name="name">receivable seq</field>
+            <field name="code">receivable.seq</field>
+            <field name="prefix">SQ</field>
+            <field name="padding">5</field>
+        </record>
+
+        <menuitem name="Receivable Portfolio" id="receivable_Portfolio_id_menu" parent="menu_receive_cheque" sequence="3"
+                  action="receivable_Portfolio_id_action"/>
+    </data>
+</odoo>

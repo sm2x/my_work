@@ -1,0 +1,55 @@
+
+<odoo>
+    <record id="view_inventory_adjustment" model="ir.ui.view">
+        <field name="name">view_inventory_adjustment</field>
+        <field name="model">inventory.adjustment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Inventory Adjustment Product" sequence="1" >
+                        <group >
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="location" widget="many2many_tags" />
+                        </group>
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <group>
+                        <button name="create_adjustment_line" string="Get Adjestment" class="oe_highlight" type="object"/>
+                    </group>
+                     <group>
+                      <field name="adjustment_lines">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="product"/>
+                            <field name="refrence"/>
+                            <field name="vend_id"/>
+                            <field name="theoritcal_Qty"/>
+                            <field name="real_qty"/>
+                            <field name="unit_cost"/>
+                            <field name="po_date"/>
+                            <field name="date"/>
+                        </tree>
+                    </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+      <record id="action_inventory_adjustment" model="ir.actions.act_window">
+        <field name="name">Inventory Adjustment Report</field>
+        <field name="res_model">inventory.adjustment</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_inventory_adjustment"
+        name="Inventory Adjustment Report / تقرير تسويه الكميات"
+        parent="stock.menu_warehouse_report"
+        action="action_inventory_adjustment"
+        sequence="24"
+        />
+
+</odoo>

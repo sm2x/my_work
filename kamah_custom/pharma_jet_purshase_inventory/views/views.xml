@@ -1,0 +1,184 @@
+<odoo>
+    <data>
+
+<!--        Purchase Planning View-->
+        <!--              This act the sequence-->
+         <record id="seq_purchase_planning" model="ir.sequence">
+            <field name="name">Serial_no</field>
+            <field name="code">serial_for_purchase_planning_code</field>
+            <field name="prefix">PL</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="view_form_purchase_planning" model="ir.ui.view">
+            <field name="name">view_form_purchase_planning</field>
+            <field name="model">purchase.planning</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="waiting_approve_request" string="Make As To Do" class="oe_highlight"
+                                type="object"
+                                attrs="{'invisible': ['|', ('state', 'in', ('waiting_approve','approved','done','cancel'))]}"
+                                groups="pharma_jet_purshase_inventory.purchase_planning_approval"/>
+                        <button name="approved_request" string="Approved" class="oe_highlight" type="object"
+                                attrs="{'invisible': ['|', ('state', 'in', ('approved','done','cancel'))]}"
+                                groups="pharma_jet_purshase_inventory.purchase_planning_approval"/>
+                        <button name="done_request" string="Done" class="oe_highlight" type="object"
+                                attrs="{'invisible': ['|', ('state', 'in', ('done','cancel'))]}"
+                                groups="pharma_jet_purshase_inventory.purchase_planning_approval"/>
+                        <button name="cancaled_request" string="Cancel" class="oe_highlight" type="object"
+                                attrs="{'invisible': [('state', 'in', ('cancel'))]}"
+                                groups="pharma_jet_purshase_inventory.purchase_planning_approval"/>
+                        <button name="create_records" string="Load Data" class="oe_highlight"
+                                        attrs="{'invisible': [('state', '=', ('cancel'))]}"
+                                        type="object"
+                                        style="background-color: #875A7B;border: none" />
+                        <button name="generate_po" type="object" string="Generate P.O"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', '!=', ('done'))]}"
+                                confirm="Are you Sure To Create Purchase Order?"
+                                style="background-color: #875A7B;border: none"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approve,approved,done,cancel"/>
+                    </header>
+                    <sheet>
+                        <group >
+                            <group string="Planning" sequence="1">
+                                 <field name="name"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group sequence="2">
+                                <field name="product_category"/>
+<!--                                <field name="internal_stock" string="Stocks" domain="[('usage', '=', 'internal')]" options="{'no_create': True}"/>&ndash;&gt;-->
+                                <field name="internal_stock" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <group sequence="5">
+                            <field name="relation_fiel"  >
+                                <tree string="Employee Comparison" editable="bottom" create="false">
+                                    <field name="go_po" disabled="disabled"/>
+                                    <field name="stock"/>
+                                    <field name="prod_id" widget="many2one_tags" string="Product" force_save="1"/>
+                                    <field name="product_uom_inherite" invisible="1"/>
+                                    <field name="vend_id" widget="many2one_tags" string="Vendor" force_save="1"/>
+                                    <field name="pos_salable_quantity" widget="many2one_tags" force_save="1" />
+                                    <field name="salable_quantity" widget="many2one_tags" force_save="1"/>
+                                    <field name="current_balance" widget="many2one_tags" force_save="1"/>
+                                    <field name="quantity" widget="many2one_tags" force_save="1"/>
+                                    <field name="demand_qty" widget="many2one_tags" force_save="1"/>
+                                    <field name="last_po_quantity" widget="many2one_tags" force_save="1"/>
+                                    <field name="last_price_po" widget="many2one_tags" force_save="1"/>
+                                    <field name="last_po_num" widget="many2one_tags" force_save="1"/>
+                                    <field name="last_po_date" widget="many2one_tags" force_save="1"/>
+                                    <field name="generate_date" invisible="1"/>
+                                </tree>
+                            </field>
+                         </group>
+<!--                        </group>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+                <!-- Tree View Purchase Planning -->
+        <record id="view_tree_purchase_planning" model="ir.ui.view">
+            <field name="name">Purchase Planning</field>
+            <field name="model">purchase.planning</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="relation_fiel" string="Number Of Products"/>
+                   <field name="date_from" />
+                   <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+<!--        purchase_planning_search-->
+        <record id="view_purchase_planning_search" model="ir.ui.view">
+            <field name="name">view_purchase_planning_search</field>
+            <field name="model">purchase.planning</field>
+            <field name="arch" type="xml">
+                <search string="Planning">
+                    <field name="name"/>
+                    <field name="relation_fiel"/>
+                    <filter name="name" string="Codes" domain="[('name','&gt;',0)]"/>
+                </search>
+            </field>
+        </record>
+<!--        Add Bonus Field in purchase View-->
+        <record id="view_bonus_fields" model="ir.ui.view">
+        <field name="name">view_bonus_fields</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="product_qty" position="before">
+                 <field name="bonus_qty"/>
+                 <field name="initial_qty"/>
+            </field>
+        </field>
+        </record>
+
+
+<!--        pharmacy number field in purchase order form -->
+        <record id="inherit_view_purchase_order" model="ir.ui.view">
+        <field name="name">inherit_view_purchase_order</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                 <field name="pharmacy_number"/>
+            </field>
+        </field>
+        </record>
+
+<!--        pharmacy number field in purchase order template report -->
+         <template id='purchase_order_inherit_template' inherit_id='purchase.report_purchaseorder_document'>
+            <xpath expr="//t/div/div[2]/div[@t-if='o.date_order']" position='after'>
+                <div class="col-3 bm-2">
+                    <strong> Pharmacy Number : </strong>
+                    <p t-field="o.pharmacy_number" class="m-0"/>
+                </div>
+            </xpath>
+         </template>
+
+<!--        pharmacy number field in request for qutation template report -->
+         <template id='request_for_qutation_inherit_template' inherit_id='purchase.report_purchasequotation_document'>
+            <xpath expr="//t/div/div" position='after'>
+                <div>
+                    <strong> Pharmacy Number : </strong>
+                    <p t-field="o.pharmacy_number" />
+                </div>
+            </xpath>
+         </template>
+
+
+<!--        Add Brand In total inventory report View -->
+        <record id="view_brand_in_total_inventory_report" model="ir.ui.view">
+        <field name="name">view_brand_in_total_inventory_report</field>
+        <field name="model">total.inventory</field>
+        <field name="inherit_id" ref="inventory_report.view_total_inventory"/>
+        <field name="arch" type="xml">
+            <field name="prod_id" position="after">
+                 <field name="brand" widget="many2many_tags"/>
+            </field>
+        </field>
+        </record>
+
+
+<!--        Menu And Actions-->
+        <record id="action_purchase_planning" model="ir.actions.act_window">
+            <field name="name">Purchase Planning</field>
+            <field name="res_model">purchase.planning</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem
+                id="menu_purchase_planning"
+                name="Purchase Planning"
+                parent="stock.menu_stock_warehouse_mgmt"
+                action="action_purchase_planning"
+                sequence="14"
+        />
+
+    </data>
+</odoo>

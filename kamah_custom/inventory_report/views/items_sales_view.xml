@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_items_sales" model="ir.ui.view">
+        <field name="name">view_items_sales</field>
+        <field name="model">items.sales</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Items Sales" sequence="1" >
+                        <group >
+                            <field name="product_category"/>
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="location" widget="many2many_tags"/>
+                        </group>
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                     <group>
+                        <button name="create_items_sale_lines" string="Get Items Sales" class="oe_highlight" type="object"/>
+                    </group>
+                     <group>
+                          <field name="items_sales_lines"  >
+                            <tree editable="bottom" create="false" delete="false">
+                                <field name="product"/>
+                                <field name="refrence"/>
+                                <field name="sales_pr"/>
+                                <field name="sold_qty"/>
+                                <field name="onhand_qty"/>
+                                <field name="tot_sales_pr"/>
+                                <field name="tot_cost"/>
+                                <field name="product_uom"/>
+                                <field name="product_category"/>
+                            </tree>
+                        </field>
+                        </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+
+
+     <record id="action_items_sales" model="ir.actions.act_window">
+        <field name="name">Items Sales</field>
+        <field name="res_model">items.sales</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_items_sales"
+        name="Items Sales Report / تقرير مبيعات اﻻصناف"
+        parent="stock.menu_warehouse_report"
+        action="action_items_sales"
+        sequence="6"
+        />
+
+</odoo>

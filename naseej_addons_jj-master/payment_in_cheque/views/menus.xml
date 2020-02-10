@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+      <record model="ir.actions.act_window" id="action_bank">
+            <field name="name">Banks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.bank</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_customer_bank">
+            <field name="name">Customer Banks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">customer.bank</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_reason">
+            <field name="name">Cheque Return Reasons</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">return.reason</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+      <record id="action_cheque_configuration2" model="ir.actions.act_window">
+            <field name="name">Additional Info</field>
+            <field name="res_model">cheque.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+      <record model="ir.actions.act_window" id="launch_receive_cheque">
+            <field name="name">Receive Cheque Book</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">receive.cheque</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a Receive Cheque Book
+              </p><p>
+                Create New Receive Cheque Book.
+              </p>
+            </field>
+        </record>
+
+
+
+     <menuitem name="Cheque Payment" id="menu_cheque_Payment" sequence="41" parent="account_accountant.menu_accounting"/>
+
+      <menuitem name="Outbound Cheques" id="menu_cheque" sequence="1"  parent="menu_cheque_Payment"/>
+
+      <menuitem name="Configuration" parent="menu_cheque_Payment" id="menu_configuration" sequence="3"/>
+        <menuitem name="Banks" id="menu_banks" parent="menu_configuration" sequence="1"
+                      action="action_bank"/>
+        <menuitem name="Customer Banks" id="menu_customer_banks" parent="menu_configuration" sequence="2"
+                  action="action_customer_bank"/>
+      <menuitem name="Cheque Return Reasons" id="menu_reasons" parent="menu_configuration" sequence="3"
+                  action="action_reason"/>
+
+      <menuitem name="Settings" id="menu_settings" parent="menu_cheque_Payment" sequence="4"/>
+      <menuitem id="menu_cheque_settings2" name="Additional Info"
+            parent="menu_settings" sequence="1" action="action_cheque_configuration2"/>
+
+        <menuitem name="Create Issue Cheque Book" id="menu_receive" parent="menu_cheque" sequence="1"
+                  action="launch_receive_cheque"/>
+  </data>
+</odoo>

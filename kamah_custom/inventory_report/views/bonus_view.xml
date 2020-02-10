@@ -1,0 +1,59 @@
+<odoo>
+    <record id="view_bonus" model="ir.ui.view">
+        <field name="name">view_bonus</field>
+        <field name="model">bonus</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Bonus" sequence="1" >
+                        <group >
+                            <field name="prod_id" widget="many2many_tags"/>
+                            <field name="location" widget="many2many_tags" />
+                        </group>
+                        <group >
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                     <group>
+                        <button name="create_bonus_lines" string="Get Bonus" class="oe_highlight" type="object"/>
+<!--                         <button name="print_report" string="Print" type="object"/>-->
+                    </group>
+                     <group>
+                          <field name="bonus_lines"  >
+                            <tree editable="bottom" create="false" delete="false">
+                                <field name="product"/>
+                                <field name="refrence"/>
+                                <field name="vend_id"/>
+                                <field name="po_ref"/>
+                                <field name="po_date"/>
+                                <field name="bonus_qty"/>
+                                <field name="intial_qty"/>
+                                <field name="product_qty"/>
+                                <field name="recieved_qty"/>
+                                <field name="billed_qty"/>
+<!--                                <field name="cost"/>-->
+                                <field name="bonus_Value"/>
+                            </tree>
+                        </field>
+                        </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="action_bonus" model="ir.actions.act_window">
+        <field name="name">Bonus</field>
+        <field name="res_model">bonus</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem
+        id="menu_bonus"
+        name="Bonus Report / تقرير حجم البونص"
+        parent="stock.menu_warehouse_report"
+        action="action_bonus"
+        sequence="4"
+        />
+
+</odoo>

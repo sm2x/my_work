@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="ommat_poultry_list">
+            <field name="name">Poultry list</field>
+            <field name="model">poultry.model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="Date"/>
+                    <field name="Lot_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ommat_poultry_form">
+            <field name="name">Poultry Form</field>
+            <field name="model">poultry.model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="Date"/>
+                                <field name="Lot_id"/>
+                            </group>
+                            <group/>
+                        </group>
+
+                        <notebook>
+                            <page string="Weights" name="weight_id" mode="tree">
+                                    <field name="weight_ids" widget="one2many_list">
+                                        <tree string="Weights Lines" editable="bottom">
+                                            <field name="weight"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="ommat_poultry_action">
+            <field name="name">poultry window</field>
+            <field name="res_model">poultry.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+        <menuitem name="Poultry" id="ommat_poultry_menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="Weights" id="Weights_ommat_poultry_menu_item" parent="ommat_poultry_menu_root"/>
+        <menuitem name="Operations" id="Operations_ommat_poultry_menu_item" parent="ommat_poultry_menu_root"/>
+
+        <!-- actions -->
+        <menuitem name="Weights" id="ommat_poultry_menu_item_Weights" parent="Weights_ommat_poultry_menu_item"
+                  action="ommat_poultry_action"/>
+
+        <menuitem name="Scrap" id="ommat_poultry_menu_item_scrap" parent="Operations_ommat_poultry_menu_item"
+                  action="stock.action_stock_scrap" sequence="1"/>
+
+        <menuitem name="Transfer" id="ommat_poultry_menu_item_transfer" parent="Operations_ommat_poultry_menu_item"
+                  action="stock.action_picking_tree_all" sequence="2"/>
+
+        <menuitem name="Manufacturing Orders" id="ommat_poultry_menu_item_production"
+                  parent="Operations_ommat_poultry_menu_item"
+                  action="mrp.mrp_production_action" sequence="3"/>
+
+    </data>
+</odoo>

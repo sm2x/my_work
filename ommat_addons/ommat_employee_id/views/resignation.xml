@@ -1,0 +1,97 @@
+<odoo>
+    <data>
+        <!--             Employee resignation form view -->
+        <record id="emp_resignation_form_view" model="ir.ui.view">
+            <field name="name">emp_resignation_form_view</field>
+            <field name="model">emp.resignation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_submit" type="object"
+                                string="Cancel" states="confirmed" class="btn-primary"
+                                />
+
+                        <button name="action_confirm" type="object"
+                                string="Confirm"  states="submit" class="btn-primary"
+                                />
+
+                        <button name="action_approve" type="object"
+                                string="Approve" states="confirmed" class="btn-primary"
+                                />
+
+
+                        <field name="state" widget="statusbar" clickable="True"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="name"/>
+                                <field name="dept"/>
+                                <field name="emp_id"/>
+                                <field name="confirmation_date" readonly="1" attrs="{'invisible': [('state', '=', 'submit')]}"/>
+                                <field name="hr_approval_date" readonly="1" attrs="{'invisible': [('state', '!=', 'approve')]}"/>
+
+                            </group>
+                            <group>
+
+                                <field name="date_start"/>
+                                <field name="leaving_date"/>
+                                <field name="system_time" readonly="1"/>
+                                <field name="total_working_years"/>
+                                <field name="notice_period"/>
+                            </group>
+
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="emp_resignation_tree_view" model="ir.ui.view">
+            <field name="name">emp_resignation_tree_view</field>
+            <field name="model">emp.resignation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="dept"/>
+                    <field name="emp_id"/>
+                    <field name="date_start"/>
+                    <field name="total_working_years"/>
+                    <field name="notice_period"/>
+                    <field name="leaving_date"/>
+                    <field name="confirmation_date"/>
+                    <field name="hr_approval_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_emp_resignation" model="ir.actions.act_window">
+            <field name="name">الاستقالة</field>
+            <field name="res_model">emp.resignation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem
+                id="menu_resignation_root"
+                name="Resignation"
+                parent="hr.menu_hr_root"
+
+
+        />
+         <menuitem
+                id="menu_resignation_child"
+                name="Resignation"
+                parent="menu_resignation_root"
+                action="action_emp_resignation"
+
+
+        />
+
+    </data>
+</odoo>

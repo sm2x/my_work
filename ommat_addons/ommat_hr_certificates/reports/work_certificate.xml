@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="work_certificate_report"
+                model="hr.certificates"
+                string="شهادة عمل"
+                report_type="qweb-html"
+                name="ommat_hr_certificates.report_work_certificate_hr_ommat"
+                file="ommat_hr_certificates.report_work_certificate_hr_ommat"
+        />
+        <template id="report_work_certificate_hr_ommat">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <div margin="0 auto" padding-top="0">
+                                <table width="100%" style="border: 1px solid #ddd; background-color: #EFECEB ;">
+                                    <tr>
+                                        <td width="30%" style="border: 1px solid #ddd;">
+                                            <span>
+                                                <img src="ommat_hr_certificates/static/description/logo.png" alt="logo"
+                                                     width="200px" height="120px"/>
+                                            </span>
+                                        </td>
+                                        <td width="30%" style="border: 1px solid #ddd;" align="center">
+                                            <h3>شهادة عمل</h3>
+                                        </td>
+                                        <td width="30%" style="border: 1px solid #ddd;" align="center">
+                                            <h3>الشركة العربية لأمات الدواجن</h3>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br></br>
+
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <field t-field="o.today_date"/>
+                                    </td>
+                                    <td>
+                                        <span>:</span>
+                                    </td>
+                                    <td>
+                                        <span>التاريخ </span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table width="100%" align="right">
+                                <tr>
+                                    <td width="30%">
+<!--                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    </td>
+                                    <td width="30%">
+<!--                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    </td>
+                                    <td width="30%">
+                                        <h3>السادة/ سفارة سلطنة عمان</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%">
+<!--                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    </td>
+                                    <td width="30%">
+                                        <h5>،،المحترمين</h5>
+                                    </td>
+                                    <td width="30%">
+<!--                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30%">
+<!--                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    </td>
+                                    <td width="30%">
+<!--                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                    </td>
+                                    <td width="40%">
+                                        <h5>،،،،السلام عليكم ورحمة الله وبركاته </h5>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <br/>
+                            <br/>
+                            <div align="center">
+                                <span>
+                                    <u>
+                                        <h1>شهادة عمل</h1>
+                                    </u>
+                                </span>
+                            </div><br/><br/><br/><br/>
+                            <h3>
+                                <div align="center">
+                                <table>
+                                    <tr align="right">
+                                        <td width="5%"/>
+                                        <td width="35%"><h5>(<field t-field="o.company_id.name"/>)</h5></td>
+                                        <td colspan="2" width="60%"><h5> تفيد الشركة العربية لأمات الدواجن المحدودة</h5></td>
+                                    </tr>
+                                    <tr align="right">
+<!--                                        <td width="15%/"/>-->
+                                        <td/>
+                                        <td colspan="3"><h5> المالكه المسجله لمشروع البرارى ومسلخ آلى </h5></td>
+                                    </tr>
+                                    <tr align="right">
+                                        <td width="25%"><h3><field t-field="o.emp_position"/> </h3></td>
+                                        <td width="25%"><h5> يعمل لديها بوظيفة </h5></td>
+                                        <td width="25%"><h4><field t-field="o.emp_name"/> </h4></td>
+                                        <td width="25%"><h5>:بأن السيد/ة </h5><h4> </h4></td>
+
+                                    </tr>
+
+                                    <tr  align="right">
+<!--                                        <td><h5><field t-field="o.leave_end_datet"/> </h5></td>-->
+                                        <td><h5> .وإلى تاريخة </h5></td>
+                                        <td><h5><field t-field="o.emp_name.emp_date_start"/> </h5></td>
+                                        <td colspan="2"><h5> للفترة من </h5></td>
+
+                                    </tr>
+                                    <tr align="right">
+<!--                                        <td width="15%"/>-->
+                                        <td/>
+                                        <td colspan="3"><h5> .حررت له هذه الشهاده بناء على طلبه </h5></td>
+                                    </tr>
+                                </table>
+
+                            </div></h3><br/><br/>
+                            <div align="center">
+                                <span>
+
+                                        <h4>،،، والله الموفق ،،،</h4>
+
+                                </span>
+                            </div><br/><br/><br/><br/>
+
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <span></span>
+                                    </td>
+
+                                    <td>
+                                        <h5><field t-field="o.hr_dept_manager"/></h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <span></span>
+                                    </td>
+                                    <td align="center">
+                                        <h5>مدير قسم الموارد البشرية</h5>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+
+
+
