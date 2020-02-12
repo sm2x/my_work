@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, _
-from odoo.exceptions import Warning
+from odoo.exceptions import Warning, ValidationError
 
 
 class MaterialPurchaseRequisition(models.Model):
@@ -192,6 +192,22 @@ class MaterialPurchaseRequisition(models.Model):
     @api.multi
     def requisition_confirm(self):
         for rec in self:
+            # for line in rec.requisition_line_ids:
+            #     if line.pur_qty > 0.0 and line.pick_qty > 0.0 and (line.pur_qty + line.pick_qty == line.planned_qty):
+            #         line.qty = line.planned_qty
+            #         print('case1')
+            #
+            #     elif line.pick_qty > 0.0 and line.pick_qty == line.planned_qty:
+            #         line.qty = line.pick_qty
+            #         print('case2')
+            #
+            #     elif line.pur_qty and line.pick_qty == line.planned_qty:
+            #         line.qty = line.pur_qty
+            #         print('case3')
+            #     else:
+            #         print('case4')
+            #         raise ValidationError(_('please Edit Quantities.'))
+
             manager_mail_template = self.env.ref(
                 'material_purchase_requisitions.email_confirm_material_purchase_requistion')
             rec.employee_confirm_id = rec.employee_id.id
@@ -235,7 +251,7 @@ class MaterialPurchaseRequisition(models.Model):
     def _prepare_pick_vals(self, line=False, stock_id=False):
         pick_vals = {
             'product_id': line.product_id.id,
-            'product_uom_qty': line.qty,
+            'product_uom_qty': line.pick_qty,
             'product_uom': line.uom.id,
             'location_id': self.location_id.id,
             'location_dest_id': self.dest_location_id.id,
@@ -249,7 +265,7 @@ class MaterialPurchaseRequisition(models.Model):
         po_line_vals = {
             'product_id': line.product_id.id,
             'name': line.product_id.name,
-            'product_qty': line.qty,
+            'product_qty': line.pur_qty,
             'product_uom': line.uom.id,
             'date_planned': fields.Date.today(),
             'price_unit': line.product_id.lst_price,

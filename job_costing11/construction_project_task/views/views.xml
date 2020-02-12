@@ -10,8 +10,14 @@
                             attrs="{'invisible': [('rq_clicked', '=', True)]}"/>
                     />
                 </button>
+                <button name='action_assign_to_me' position="after">
+                    <button name="create_subcontractor_report" string="Create Subcontractor Report" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|',('rp_clicked', '=', True),('is_subcontractor_joborder','=',False)]}"/>
+                    />
+                </button>
                 <field name="project_id" position="after">
                     <field name="rq_clicked" invisible="1"/>
+                    <field name="rp_clicked" invisible="1"/>
                 </field>
             </field>
         </record>
@@ -197,6 +203,16 @@
                            statusbar_visible="draft,dept_confirm,ir_approve,approve,stock,Purchase,receive"/>
 
                 </field>
+                <xpath expr="//notebook/page[1]/field['requisition_line_ids']/tree/field[@name='description']" position="after">
+
+                    <field name="pur_qty"/>
+                    <field name="pick_qty"/>
+                    <field name="planned_qty"/>
+
+                </xpath>
+<!--                attrs="{'invisible': [('requisition_type', '=', 'internal')]}"-->
+<!--                 attrs="{'invisible': [('requisition_type', '=', 'purchase')]}"-->
+
                 <field name="department_id" position="after">
                     <field name="po_checked" invisible="1"/>
                     <field name="pick_checked" invisible="1"/>
@@ -309,6 +325,7 @@ toz fek
             <field name="model">subcontract.report</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="job_order"/>
                     <field name="name"/>
                     <field name="project"/>
                     <field name="engineer" string="Customer"/>
@@ -333,7 +350,7 @@ toz fek
                                 <field name="name"/>
                                 <field name="project"/>
                                 <field name="payment_term"/>
-                                <field name="update_clicked" invisible="1"/>
+                                <field name="update_clicked"/>
                             </group>
                             <group>
                                 <field name="engineer"/>

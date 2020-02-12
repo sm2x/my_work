@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class MaterialPurchaseRequisitionLine(models.Model):
@@ -22,7 +23,7 @@ class MaterialPurchaseRequisitionLine(models.Model):
 
     partner_id = fields.Many2one(
         'res.partner',
-        string='Vendors', domain="[('vir', '=', True)]"
+        string='Vendors', domain="[('supplier', '=', True)]"
     )
     description = fields.Char(
         string='Description',
@@ -30,8 +31,8 @@ class MaterialPurchaseRequisitionLine(models.Model):
     )
     qty = fields.Float(
         string='Quantity',
-        default=1,
         required=True,
+        readonly=True,
     )
     uom = fields.Many2one(
         'product.uom',  # product.uom in odoo11
@@ -39,15 +40,15 @@ class MaterialPurchaseRequisitionLine(models.Model):
         required=True,
     )
 
-    requisition_type = fields.Selection(
-        selection=[
-            ('internal', 'Internal Picking'),
-            ('purchase', 'Purchase Order'),
-        ],
-        string='Requisition Action',
-        # default='purchase',
-        required=True,
-    )
+    # requisition_type = fields.Selection(
+    #     selection=[
+    #         ('internal', 'Internal Picking'),
+    #         ('purchase', 'Purchase Order'),
+    #     ],
+    #     string='Requisition Action',
+    #     # default='purchase',
+    #     required=True,
+    # )
 
     @api.onchange('product_id')
     def onchange_product_id(self):

@@ -70,15 +70,15 @@
                                 <field name="requisition_line_ids"
                                        attrs="{'readonly': [('state', 'in', ['cancel','receive'])]}">
                                     <tree editable="bottom">
-                                        <field name="requisition_type"
-                                               groups="material_purchase_requisitions.group_purchase_requisition_user,purchase.group_purchase_user,material_purchase_requisitions.group_purchase_requisition_manager,material_purchase_requisitions.group_purchase_requisition_department"/>
+<!--                                        <field name="requisition_type"-->
+<!--                                               groups="material_purchase_requisitions.group_purchase_requisition_user,purchase.group_purchase_user,material_purchase_requisitions.group_purchase_requisition_manager,material_purchase_requisitions.group_purchase_requisition_department"/>-->
                                         <field name="product_id"/>
                                         <field name="description"/>
                                         <field name="qty"/>
                                         <field name="uom"/>
                                         <field name="partner_id"
                                                groups="material_purchase_requisitions.group_purchase_requisition_user,purchase.group_purchase_user,material_purchase_requisitions.group_purchase_requisition_manager,material_purchase_requisitions.group_purchase_requisition_department"
-                                               attrs="{'readonly': [('requisition_type', '!=', 'purchase')]}"
+<!--                                               attrs="{'readonly': [('requisition_type', '!=', 'purchase')]}"-->
                                                widget="many2many_tags"/>
                                     </tree>
                                 </field>

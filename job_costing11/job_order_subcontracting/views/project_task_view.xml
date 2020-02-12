@@ -47,17 +47,12 @@
                         </field>
                     </page>
                 </xpath>
-                <xpath expr="//page[8]" position="after">
-                    <!--            attrs="{'invisible': [('is_subcontractor_joborder', '=', False)]}-->
-                    <page name="subcontractor info" string="Subcontractor Details">
-                        <group>
-                            <group>
-                                <field name="custom_partner_id"/>
-                                <field name="is_subcontractor_joborder"/>
-                            </group>
-                        </group>
-                    </page>
-                </xpath>
+                <field name="tag_ids" position="after">
+                    <field name="is_subcontractor_joborder"/>
+                    <field name="custom_partner_id" attrs="{'invisible': [('is_subcontractor_joborder', '=', False)]}"/>
+
+                </field>
+
             </field>
         </record>
 

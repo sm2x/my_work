@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_construction_project_task_construction_project_task,construction_project_task.construction_project_task,model_construction_project_task_construction_project_task,,1,0,0,0
+access_subcontract_report,acc_subcontract_report,model_subcontract_report,engineer_user,1,1,1,1
+access_payment_guarantee,acc_payment_guarantee,model_payment_guarantee,engineer_user,1,1,1,1
+access_payment_guarantee_line,acc_payment_guarantee_line,model_payment_guarantee_line,engineer_user,1,1,1,1

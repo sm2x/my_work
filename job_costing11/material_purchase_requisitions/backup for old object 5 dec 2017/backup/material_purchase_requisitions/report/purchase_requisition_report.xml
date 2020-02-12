@@ -213,9 +213,9 @@
                             </tr>
                             <t t-foreach="doc.requisition_line_ids" t-as="line">
                                 <tr style="border: 2px solid grey;">
-                                    <td>
-                                        <span t-field="line.requisition_type"/>
-                                    </td>
+<!--                                    <td>-->
+<!--                                        <span t-field="line.requisition_type"/>-->
+<!--                                    </td>-->
                                     <td>
                                         <span t-field="line.product_id.name"/>
                                     </td>

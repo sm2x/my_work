@@ -10,6 +10,41 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     rq_clicked = fields.Boolean()
+    rp_clicked = fields.Boolean()
+
+    @api.multi
+    def create_subcontractor_report(self):
+        # rp_object = self.env['sub.contractor']
+        subcontractor = self.custom_partner_id.id
+        rm_object = self.material_plan_ids
+        ol_lines = []
+
+        for line in rm_object:
+            ol_lines.append((0, 0, {
+                'product_id': line.product_id.id,
+                'description': line.description,
+                'quantity': line.product_uom_qty,
+                'uom_id': line.product_uom.id,
+            }))
+
+        self.env['subcontract.report'].create({
+            'name': subcontractor,
+            'project': self.project_id.id,
+            'engineer': self.project_id.user_id.id,
+            'job_order': self.id,
+            'order_line': ol_lines,
+            'update_clicked': False
+
+        })
+        rp_object = self.env['subcontract.report'].search([('job_order', '=', self.id)], limit=1)
+        # print(rp_object.name.name)
+        self.rp_clicked = True
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "subcontract.report",
+            "views": [[False, "form"]],
+            "res_id": rp_object.id,
+        }
 
     @api.multi
     def create_RQ(self):
@@ -39,6 +74,7 @@ class ProjectTask(models.Model):
 
         })
         self.rq_clicked = True
+
 
 
 class JobCostSheetUpdateWizard(models.TransientModel):
@@ -247,7 +283,28 @@ class DiefPurchaseRequisition(models.Model):
     custom_requisition = fields.Many2one('material.purchase.requisition')
 
 
+class DiefMaterialPurchaseRequisitionLine(models.Model):
+    _inherit = 'material.purchase.requisition.line'
+    pur_qty = fields.Float(
+        string='Purchase Quantity',
+    )
+    pick_qty = fields.Float(
+        string='Picking Quantity',
+    )
 
+    # @api.constrains('pur_qty', 'pick_qty', 'planned_qty')
+    # def onchange_qty(self):
+    #     for rec in self:
+    #         if rec.pick_qty+rec.pur_qty != rec.planned_qty:
+    #             raise ValidationError(_('please Edit Quantities.'))
+
+    # @api.onchange('requisition_type')
+    # def onchange_requisition_type(self):
+    #     for rec in self:
+    #         if rec.requisition_type == 'purchase':
+    #             rec.qty = rec.pur_qty
+    #         elif rec.requisition_type == 'internal':
+    #             rec.qty = rec.pick_qty
 
 
 class DiefMaterialPurchaseRequisition(models.Model):
@@ -284,41 +341,46 @@ class DiefMaterialPurchaseRequisition(models.Model):
 
     @api.multi
     def request_tender(self):
-
-        tender_obj = self.env['purchase.requisition']
-        tender_line_obj = []
-        tender_dict = {}
-
         for rec in self:
+            tender_obj = self.env['purchase.requisition']
+            tender_lines = []
+
             if not rec.requisition_line_ids:
                 raise ValidationError(_('Please create some requisition lines.'))
 
-            # if not any(line.requisition_type == 'purchase' for line in rec.requisition_line_ids):
-            #     raise ValidationError(_('No Purchase lines.'))
-            for line in rec.requisition_line_ids:
-                if line.requisition_type == 'purchase':
-                    tender_line_obj.append((0, 0, {
-                        'product_id': line.product_id.id,
-                        'name': line.product_id.name,
-                        'product_qty': line.qty,
-                        'product_uom_id': line.uom.id,
-                        'date_planned': fields.Date.today(),
-                        'price_unit': line.product_id.lst_price,
-                        # 'requisition_id': rec.id,
-                        'account_analytic_id': self.analytic_account_id.id
-                    }))
+            vendors = rec.requisition_line_ids.mapped('partner_id')
+            for vendor in vendors:
+                print('vendor', vendor.name)
+                vendor_lines = rec.requisition_line_ids.search(
+                    [('partner_id', '=', vendor.id), ('requisition_id', '=', rec.id)])
+                for line in rec.vendor_lines:
+                    if line.pur_qty + line.pick_qty == line.planned_qty:
+                        if line.pur_qty > 0.0:
+                            tender_lines.append((0, 0, {
+                                'product_id': line.product_id.id,
+                                'name': line.product_id.name,
+                                'product_qty': line.pur_qty,
+                                'product_uom_id': line.uom.id,
+                                'date_planned': fields.Date.today(),
+                                'price_unit': line.product_id.lst_price,
+                                # 'requisition_id': rec.id,
+                                'account_analytic_id': self.analytic_account_id.id
+                            }))
+                    else:
+                        raise ValidationError(_('please Edit Quantities.'))
 
-            tender_vals = {
-                'currency_id': rec.env.user.company_id.currency_id.id,
-                'date_order': fields.Date.today(),
-                'company_id': rec.env.user.company_id.id,
-                'custom_requisition_id': rec.id,
-                'origin': rec.name,
-                'custom_requisition': rec.id,
-                'line_ids': tender_line_obj
-            }
-            tender_obj.create(tender_vals)
-            self.tender_checked = True
+                    tender_vals = {
+                        'currency_id': rec.env.user.company_id.currency_id.id,
+                        'date_order': fields.Date.today(),
+                        'company_id': rec.env.user.company_id.id,
+                        'vendor_id': vendor.id,
+                        'custom_requisition_id': rec.id,
+                        'origin': rec.name,
+                        'custom_requisition': rec.id,
+                        'line_ids': tender_lines
+                    }
+                    tender_obj.create(tender_vals)
+                    self.tender_checked = True
 
     @api.multi
     def action_view_tender(self):
@@ -363,111 +425,98 @@ class DiefMaterialPurchaseRequisition(models.Model):
             'context': ctx,
         }
 
-
     @api.multi
     def request_po(self):
-        purchase_obj = self.env['purchase.order']
-        purchase_line_obj = self.env['purchase.order.line']
-        po_dict = {}
-
         for rec in self:
             if not rec.requisition_line_ids:
                 raise ValidationError(_('Please create some requisition lines.'))
-
             # if not any(line.requisition_type == 'purchase' for line in rec.requisition_line_ids):
             #     raise ValidationError(_('No Purchase lines.'))
 
-            for line in rec.requisition_line_ids:
-                if line.requisition_type == 'purchase':
-                    if not line.partner_id:
-                        raise ValidationError(_('PLease Enter At least One Vendor on Requisition Lines'))
+            purchase_obj = rec.env['purchase.order']
+            purchase_line_obj = rec.env['purchase.order.line']
+            vendors = rec.requisition_line_ids.mapped('partner_id')
+            if vendors:
+                for vendor in vendors:
+                    print('vendor', vendor.name)
+                    vendor_lines = rec.requisition_line_ids.search([('partner_id', '=', vendor.id), ('requisition_id', '=', rec.id)])
+                    po_vals = {
+                        'partner_id': vendor.id,
+                        'currency_id': rec.env.user.company_id.currency_id.id,
+                        'date_order': fields.Date.today(),
+                        'company_id': rec.env.user.company_id.id,
+                        'custom_requisition_id': rec.id,
+                        'origin': rec.name,
+                        'task_id': rec.task_id.id,
+                        'project_id': rec.task_id.project_id.id,
+                    }
+                    purchase_order = purchase_obj.create(po_vals)
+                    for line in vendor_lines:
+                        if not line.partner_id:
+                            raise ValidationError(_('PLease Enter At least One Vendor on Requisition Lines'))
+                        print('for')
+                        if line.pur_qty+line.pick_qty == line.planned_qty:
+                            print()
+                            if line.pur_qty > 0.0:
+                                po_line_vals = rec._prepare_po_line(line, purchase_order)
+                                purchase_line_obj.sudo().create(po_line_vals)
 
-                    for partner in line.partner_id:
-                        if partner not in po_dict:
-                            po_vals = {
-                                'partner_id': partner.id,
-                                'currency_id': rec.env.user.company_id.currency_id.id,
-                                'date_order': fields.Date.today(),
-                                'company_id': rec.env.user.company_id.id,
-                                'custom_requisition_id': rec.id,
-                                'origin': rec.name,
-                                'task_id': rec.task_id.id,
-                                'project_id': rec.task_id.project_id.id,
-                            }
-                            purchase_order = purchase_obj.create(po_vals)
-                            po_dict.update({partner: purchase_order})
-                            po_line_vals = rec._prepare_po_line(line, purchase_order)
-
-                            purchase_line_obj.sudo().create(po_line_vals)
-                            rec.action_email_send()
-                            print(purchase_order.name)
-                            # purchase_order.action_rfq_send()
                         else:
-                            purchase_order = po_dict.get(partner)
-                            po_line_vals = rec._prepare_po_line(line, purchase_order)
-                            purchase_line_obj.sudo().create(po_line_vals)
-                            print(purchase_order.name)
-                            rec.action_email_send()
-                            # purchase_order.action_rfq_send()
+                            raise ValidationError(_('please Edit Quantities.'))
 
-                        rec.state = 'Purchase'
-
-            # purchase_obj.action_rfq_send()
-            rec.po_checked = True
+                rec.state = 'Purchase'
+                rec.po_checked = True
+            else:
+                raise ValidationError(_('please add vendors.'))
 
     @api.multi
     def request_stock(self):
-        stock_obj = self.env['stock.picking']
-        move_obj = self.env['stock.move']
-
         for rec in self:
-            if not rec.requisition_line_ids:
-                raise Warning('Please create some requisition lines.')
-            if not any(line.requisition_type == 'internal' for line in rec.requisition_line_ids):
-                raise ValidationError(_('No Internal lines.'))
-            if any(line.requisition_type == 'internal' for line in rec.requisition_line_ids):
-                if not rec.location_id.id:
-                    raise ValidationError(_('Select Source location under the picking details.'))
-                if not rec.custom_picking_type_id.id:
-                    raise ValidationError(_('Select Picking Type under the picking details.'))
-                if not rec.dest_location_id:
-                    raise ValidationError(_('Select Destination location under the picking details.'))
-                #                 if not rec.employee_id.dest_location_id.id or not rec.employee_id.department_id.dest_location_id.id:
-                #                     raise Warning(_('Select Destination location under the picking details.'))
-                picking_vals = {
-                    'partner_id': rec.employee_id.address_home_id.id,
-                    'min_date': fields.Date.today(),
-                    'location_id': rec.location_id.id,
-                    'location_dest_id': rec.dest_location_id and rec.dest_location_id.id or rec.employee_id.dest_location_id.id or rec.employee_id.department_id.dest_location_id.id,
-                    'picking_type_id': rec.custom_picking_type_id.id,  # internal_obj.id,
-                    'note': rec.reason,
-                    'custom_requisition_id': rec.id,
-                    'origin': rec.name,
-                }
-                stock_id = stock_obj.sudo().create(picking_vals)
-                delivery_vals = {
-                    'delivery_picking_id': stock_id.id,
-                }
-                rec.write(delivery_vals)
+            stock_obj = self.env['stock.picking']
+            move_obj = self.env['stock.move']
+            if not rec.location_id.id:
+                raise ValidationError(_('Select Source location under the picking details.'))
+            if not rec.custom_picking_type_id.id:
+                raise ValidationError(_('Select Picking Type under the picking details.'))
+            if not rec.dest_location_id:
+                raise ValidationError(_('Select Destination location under the picking details.'))
 
+            picking_vals = {
+                'partner_id': rec.employee_id.address_home_id.id,
+                'min_date': fields.Date.today(),
+                'location_id': rec.location_id.id,
+                'location_dest_id': rec.dest_location_id and rec.dest_location_id.id or rec.employee_id.dest_location_id.id or rec.employee_id.department_id.dest_location_id.id,
+                'picking_type_id': rec.custom_picking_type_id.id,  # internal_obj.id,
+                'note': rec.reason,
+                'custom_requisition_id': rec.id,
+                'origin': rec.name,
+            }
+            stock_id = stock_obj.sudo().create(picking_vals)
+            delivery_vals = {
+                'delivery_picking_id': stock_id.id,
+            }
+            rec.write(delivery_vals)
             for line in rec.requisition_line_ids:
-                if line.requisition_type == 'internal':
-                    pick_vals = rec._prepare_pick_vals(line, stock_id)
-                    move_id = move_obj.sudo().create(pick_vals)
-
-                rec.state = 'stock'
-        self.pick_checked = True
+                if line.pick_qty+line.pur_qty  == line.planned_qty:
+                    if line.pick_qty > 0.0:
+                        pick_vals = rec._prepare_pick_vals(line, stock_id)
+                        move_id = move_obj.sudo().create(pick_vals)
+                else:
+                    raise ValidationError(_('please Edit Quantities.'))
+            rec.state = 'stock'
+            rec.pick_checked = True
 
 
 class SubcontractReport(models.Model):
     _name = "subcontract.report"
+    _rec_name = 'job_order'
 
     name = fields.Many2one("res.partner", string='Second party', domain="[('supplier', '=', True)]")
     engineer = fields.Many2one("res.users", string='Project Engineer', related='project.user_id')
-    project = fields.Many2one('project.project', 'Project')
+    project = fields.Many2one('project.project', 'Project', requierd=True)
     payment_term = fields.Many2one("account.payment.term", string='Payment Term')
     business_guarantee = fields.Float('Business Guarantee')
-    job_order = fields.Many2one('project.task', 'Job Orders', domain="[('project_id', '=', project)]")
+    job_order = fields.Many2one('project.task', 'Job Orders', domain="[('project_id', '=', project)]", requierd=True)
     order_line = fields.One2many('order.line', 'report_id', string='Order Lines')
     penal_conditions = fields.Text("Penal conditions")
     update_clicked = fields.Boolean(copy=False)
@@ -489,7 +538,8 @@ class SubcontractReport(models.Model):
             }))
 
         # res.update({'picking_id': picking.id})
-        self.job_order.update({'purchaseorder_line_ids': order_line_ids})
+        self.job_order.update({'purchaseorder_line_ids': order_line_ids,
+                               'custom_partner_id': self.name.id})
         self.update_clicked = True
 
 

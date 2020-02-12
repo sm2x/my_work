@@ -24,10 +24,9 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'report/subcontractor_report.xml',
-        # 'report/report_tax_inherit.xml',
         'security/groups.xml',
+        'security/ir.model.access.csv',
+        'report/subcontractor_report.xml',
         'views/views.xml',
         'views/templates.xml',
     ],
